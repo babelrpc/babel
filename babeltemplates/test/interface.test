@@ -1,0 +1,52 @@
+{ {{setindent "  "}}{{$idl := idl}}
+{{indent}}"_comment":"AUTO-GENERATED FILE - DO NOT MODIFY. Generated from {{idl.Filename}}. {{joinComments $idl.Comments}}",  
+{{indent}}"structs":{
+{{range $i, $s := allStructs}}{{indent}}{{indent}}"{{.Name}}":{
+{{if .Comments}}{{indent}}{{indent}}{{indent}}"comment":"{{joinComments .Comments}}",{{end}}
+{{indent}}{{indent}}{{indent}}{{if .Extends}}"parent":"{{.Extends}}",{{end}}
+{{indent}}{{indent}}{{indent}}"properties":{
+{{range $i, $f := .Fields}}{{indent}}{{indent}}{{indent}}{{indent}}"{{.Name}}":{
+{{if .Comments}}{{indent}}{{indent}}{{indent}}{{indent}}"comment":"{{joinComments .Comments}}",{{end}}
+{{indent}}{{indent}}{{indent}}{{indent}}{{indent}}"{{getTypeKey .Type}}":"{{formatType .Type}}"{{if .IsCollection}},{{end}}
+{{if .IsMap}}{{indent}}{{indent}}{{indent}}{{indent}}{{indent}}"keyType":"{{.Type.KeyType.Name}}",{{end}}
+{{if .IsCollection}}{{setindent "          "}}{{template "ITEMS" .Type }}{{setindent "  "}}{{end}}
+{{indent}}{{indent}}{{indent}}{{indent}}}{{if last $i $s.Fields | not}},{{else}}{{end}}
+{{end}}
+{{indent}}{{indent}}{{indent}}}
+{{indent}}{{indent}}}{{if last $i allStructs | not}},{{else}}{{end}}
+{{end}}
+{{indent}}},
+{{indent}}"enums":{
+{{range $i, $e := allEnums}}{{indent}}{{indent}}"{{.Name}}":{
+{{if .Comments}}{{indent}}{{indent}}{{indent}}"comment":"{{joinComments .Comments}}",{{end}}
+{{indent}}{{indent}}{{indent}}"values":{
+{{range $i, $v := .Values}}{{indent}}{{indent}}{{indent}}{{indent}}"{{.Name}}":{{.Value}}{{if last $i $e.Values | not}},{{else}}{{end}}
+{{end}}
+{{indent}}{{indent}}{{indent}}}
+{{indent}}{{indent}}}{{if last $i allEnums | not}},{{else}}{{end}}{{end}}
+{{indent}}},
+{{indent}}"name":"{{.Name}}",
+{{if .Comments}}{{indent}}"comment":"{{joinComments .Comments}}",{{end}}
+{{indent}}"methods":[
+{{range $i, $m := .Methods}}
+{{indent}}{{indent}}{
+{{if .Comments}}{{indent}}{{indent}}{{indent}}"comment":"{{joinComments .Comments}}",{{end}}
+{{indent}}{{indent}}{{indent}}"name":"{{.Name}}"
+{{if .HasParameters}}{{indent}}{{indent}}{{indent}},"params":{
+{{range $i, $p := .Parameters}}{{indent}}{{indent}}{{indent}}{{indent}}"{{.Name}}":{
+{{if $p.Comments}}{{indent}}{{indent}}{{indent}}{{indent}}{{indent}}"comment":"{{joinComments $p.Comments}}",{{end}}
+{{indent}}{{indent}}{{indent}}{{indent}}{{indent}}"{{getTypeKey .Type}}":"{{formatType .Type}}"{{if .IsCollection}},{{end}}
+{{if .IsMap}}{{indent}}{{indent}}{{indent}}{{indent}}{{indent}}"keyType":"{{.Type.KeyType.Name}}",{{end}}
+{{if .IsCollection}}{{setindent "          "}}{{template "ITEMS" .Type }}{{setindent "  "}}{{end}}
+{{indent}}{{indent}}{{indent}}{{indent}}}{{if last $i $m.Parameters | not}},{{else}}{{end}}
+{{end}}
+{{indent}}{{indent}}{{indent}}}
+{{end}}
+{{if not .Returns.IsVoid}}{{indent}}{{indent}}{{indent}},"returns":{
+{{indent}}{{indent}}{{indent}}{{indent}}"{{getTypeKey .Returns}}":"{{formatType .Returns}}"{{if .Returns.IsCollection}},{{end}}
+{{if .Returns.IsMap}}{{indent}}{{indent}}{{indent}}{{indent}}"keyType":"{{.Returns.KeyType.Name}}",{{end}}
+{{if .Returns.IsCollection}}{{setindent "        "}}{{template "ITEMS" .Returns }}{{setindent "  "}}{{end}}
+{{indent}}{{indent}}{{indent}}}{{end}}
+{{indent}}{{indent}}}{{if last $i $.Methods | not}},{{else}}{{end}}{{end}}
+{{indent}}]
+}

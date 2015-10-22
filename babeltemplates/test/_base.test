@@ -1,0 +1,9 @@
+{{define "ITEMS"}} {{$ind := getindent}}
+{{indent}}"items":{ {{addindent "  "}}
+{{indent}}"{{getTypeKey .ValueType}}":"{{formatType .ValueType}}"{{if .ValueType.IsCollection}},{{end}}
+{{if and .ValueType.IsCollection .ValueType.KeyType}}{{indent}}"keyType":"{{formatType .ValueType.KeyType}}",{{end}}
+{{if .ValueType.IsCollection}}{{template "ITEMS" .ValueType }}{{end}}
+{{setindent $ind}}{{indent}}}
+{{end}}
+{{define "BUILD_COMMENTS"}}
+{{end}}

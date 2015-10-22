@@ -1,0 +1,46 @@
+/// Target this against the test webserver that doesn't do
+/// anything. No responses expected.
+
+namespace company.com/Test
+
+/// A coordinate
+struct Coord {
+	/// X position
+	int32 X;
+	/// Y position
+	int32 Y;
+}
+
+/// Service for testing stuff
+service FunService
+{
+	/// Return information about the local pod
+	@rest [Op(Path="/test1/{id}", Method="GET"), Response(Code=200)]
+	@rest [Response(Code=0, Type="ServiceError", Desc="A Babel service error occurred.")]
+	void Test1(
+		/// The id
+		@rest [Parm(In="path", Required=true)]
+		int32 id,
+		/// Some list
+		@rest [Parm(In="query", Format="pipes")]
+		list<string> slist,
+		/// Some other list
+		@rest [Parm(In="query", Format="multi")]
+		list<float64> flist,
+		/// Some list in a header
+		@rest [Parm(In="header", Format="csv", Name="X-HList")]
+		list<int32> hlist
+	);
+
+	/// Return information about the local pod
+	@rest [Op(Path="/test2/{id}", Method="POST"), Response(Code=200)]
+	@rest [Response(Code=0, Type="ServiceError", Desc="A Babel service error occurred.")]
+	void Test2(
+		/// The id
+		@rest [Parm(In="path", Required=true)]
+		int32 id,
+		/// Coordiniates
+		@rest [Parm(In="body", Required=true)]
+		Coord coords
+	);
+}

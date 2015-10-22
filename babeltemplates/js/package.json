@@ -1,0 +1,31 @@
+{
+  "name": "Lib",
+  "version": "0.0.0",
+  "description": "Generated from {{.Filename}}",
+  "author": "",
+  "keywords": [
+    "babel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://"
+  },
+  "bugs": {
+    "url": "https://"
+  },
+  "main" : "model.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "make test"
+  },
+  "dependencies": {
+    "netmask": "~1.0.4",
+    "async": "~0.2.10",
+    "underscore": "^1.6.0",
+    "babelrpc": "^0.0.1"
+  },
+  "devDependencies": {
+  },
+  "license": "",
+  "engine": "node >= v0.11.*"
+}
