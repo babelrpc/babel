@@ -1,0 +1,6 @@
+namespace company.com/Babel/Tests
+
+@scope [Company.Validator.ValidateComparer("-90", true, Company.Validator.ValidationDataType.Double, Company.Validator.ValidationCompareOperator.GreaterThanEqual), Company.Validator.ValidateComparer("90", true, Company.Validator.ValidationDataType.Double, Company.Validator.ValidationCompareOperator.LessThanEqual)]
+struct Yipper {
+	int32 X;
+}

@@ -1,0 +1,58 @@
+namespace company.com/test
+namespace java "com.company.test"
+namespace csharp "Company.Test"
+namespace asp "Test"
+
+// Testing some stuff
+
+
+/// Valid states of a button
+enum ButtonStates {
+	OFF = 0,
+	ON = 1
+}
+
+/// Names of companies
+const CompanyNames {
+	Google = "Google";
+	Apple = "Apple";
+	Microsoft = "Microsoft";
+}
+
+struct SearchCriteria { int64 UID = 0; }
+
+/// System-wide definition of a user
+@scope [Company.Test.SomeAttribute(100, X = 34.5, Y = SomeAttribute.DefaultValue)]
+[BabelAttribute, BabelAttribute2(Foo = 3)]
+struct User {
+	/// The global user identifier. This never changes.
+	@scope [Company.Test.SomeAttribute(100, X = 34.5, Y = SomeAttribute.DefaultValue)]
+	[BabelAttribute, BabelAttribute2(Foo = 3)]
+	int64 ID;
+
+	/// The login identifier
+	string LoginID = CompanyNames.Google;
+}
+
+/// The user service provided access to the global user database
+/// and supports multiple data centers.
+@scope [Company.Test.SomeAttribute(100, X = 34.5, Y = SomeAttribute.DefaultValue)]
+[BabelAttribute, BabelAttribute2(Foo = 3)]
+service UserService {
+	/// Gets a user by ID
+	@scope [Company.Test.SomeAttribute(100, X = 34.5, Y = SomeAttribute.DefaultValue)]
+	[BabelAttribute, BabelAttribute2(Foo = 3)]
+	User GetUser(
+		/// The user identifier of the user to fetch
+		@scope [Company.Test.SomeAttribute(100, X = 34.5, Y = SomeAttribute.DefaultValue)]
+		[BabelAttribute, BabelAttribute2(Foo = 3)]
+		int64 id);
+
+	/// Returns the list of users matching the given criteria.
+	list<User> FindUsers(
+		/// Specifies the search criteria for users
+		SearchCriteria criteria,
+		/// Maximum number of results
+		int32 maxResults = 50, ButtonStates state = ButtonStates.ON
+	)
+}

@@ -1,0 +1,5 @@
+namespace company.com/foo
+namespace bork "com.company.foo"  // bork isn't a language for babel
+namespace csharp "Company.Foo"
+namespace asp "Foo"
+

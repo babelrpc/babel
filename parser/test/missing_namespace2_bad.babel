@@ -1,0 +1,8 @@
+
+// namespaces missing
+
+namespace php "BBB"
+
+enum Foo {
+	ONE = 1, TWO = 2
+}

@@ -1,0 +1,10 @@
+namespace company.com/foo
+namespace java "com.company.foo"
+namespace csharp "Company.Foo"
+namespace asp "Foo"
+
+// top level names cannot collide
+
+enum Foo {}
+const Foo {}
+

@@ -1,0 +1,6 @@
+
+// namespaces missing
+
+enum Foo {
+	ONE = 1, TWO = 2
+}

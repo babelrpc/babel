@@ -1,0 +1,9 @@
+
+// default namespace defined again
+
+namespace company.com/Test
+namespace company.com/Test2
+
+enum Foo {
+	ONE = 1, TWO = 2
+}

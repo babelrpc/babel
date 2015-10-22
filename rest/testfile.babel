@@ -1,0 +1,29 @@
+namespace company.com/Foo
+
+service A {
+	/// Yeehaw - test what happens with lots of settings
+	@rest [Op(Path="/test/headers", Method="GET", Deprecated=false),
+	       Response(Code=201, Headers="Foo", Desc="Normal response")]
+	@rest [Response(Code=0, Type="string", Headers="Foo,Bar"),
+	       Response(Code=202, Type="string", Headers="Bar")]
+	@rest [Header(Name="Foo", Type="string", Desc="Some header"),
+	       Header(Name="Bar", Type="list<string>", Format="csv" Desc="Some other header")]
+	list<string> testHeaders();
+
+	/// test what happens with no settings
+	list<string> testDefaults(int32 a);
+
+	/// test parameters
+	@rest [Op(Path="/test/{a}/parms", Method="POST", Deprecated=true), Response(Code=202)]
+	string testParms(
+		@rest [Parm(In="path", Required=true, Name="A")]
+		string a,
+		@rest [Parm(In="query", Required=false, Format="pipes")]
+		list<string> b
+		@rest [Parm(In="query", Foo=3)] // fail
+		int32 c,
+		@rest [Response(Code=202)] // fail
+		int32 d,
+		string e
+		);
+}

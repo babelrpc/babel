@@ -1,0 +1,10 @@
+namespace company.com/Foo
+namespace java "com.company.foo"
+namespace csharp "Company.Foo"
+namespace asp "Foo"
+
+// top level names cannot collide
+
+struct Foo {}
+service Foo {}
+

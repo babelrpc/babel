@@ -1,0 +1,8 @@
+namespace company.com/foo
+namespace java "com.company.foo"
+namespace csharp "Company.Foo"
+namespace asp "Foo"
+
+import "other.babel"
+
+// import must come before namespace

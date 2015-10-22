@@ -1,0 +1,16 @@
+namespace company.com/foo
+namespace java "com.company.foo"
+namespace csharp "Company.Foo"
+namespace asp "Foo"
+
+abstract struct Foo {
+	int32 X;
+	int32 Y;
+}
+
+struct Bar extends Foo {
+	int32 Z;
+
+	int32 X; // not allowed - hides Foo.X
+}
+

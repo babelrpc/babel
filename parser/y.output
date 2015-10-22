@@ -1,0 +1,1670 @@
+
+state 0
+	$accept: .IDL $end 
+	DocComments: .    (100)
+
+	.  reduce 100 (src line 622)
+
+	DocComments  goto 2
+	IDL  goto 1
+
+state 1
+	$accept:  IDL.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	IDL:  DocComments.Imports DefaultNamespace Namespaces Definitions 
+	DocComments:  DocComments.DocComment 
+	Imports: .    (2)
+
+	COMMENT  shift 5
+	.  reduce 2 (src line 112)
+
+	DocComment  goto 4
+	Imports  goto 3
+
+state 3
+	IDL:  DocComments Imports.DefaultNamespace Namespaces Definitions 
+	Imports:  Imports.Import 
+
+	IMPORT  shift 9
+	NAMESPACE  shift 8
+	.  error
+
+	DefaultNamespace  goto 6
+	Import  goto 7
+
+state 4
+	DocComments:  DocComments DocComment.    (101)
+
+	.  reduce 101 (src line 626)
+
+
+state 5
+	DocComment:  COMMENT.    (102)
+
+	.  reduce 102 (src line 633)
+
+
+state 6
+	IDL:  DocComments Imports DefaultNamespace.Namespaces Definitions 
+	Namespaces: .    (5)
+
+	.  reduce 5 (src line 137)
+
+	Namespaces  goto 10
+
+state 7
+	Imports:  Imports Import.    (3)
+
+	.  reduce 3 (src line 112)
+
+
+state 8
+	DefaultNamespace:  NAMESPACE.AttrName '/' PathName CommaSemiOptional 
+
+	IDENT  shift 12
+	.  error
+
+	AttrName  goto 11
+
+state 9
+	Import:  IMPORT.STRING CommaSemiOptional 
+
+	STRING  shift 13
+	.  error
+
+
+state 10
+	IDL:  DocComments Imports DefaultNamespace Namespaces.Definitions 
+	Namespaces:  Namespaces.Namespace 
+	Definitions: .    (12)
+
+	NAMESPACE  shift 16
+	.  reduce 12 (src line 168)
+
+	Definitions  goto 14
+	Namespace  goto 15
+
+state 11
+	DefaultNamespace:  NAMESPACE AttrName.'/' PathName CommaSemiOptional 
+	AttrName:  AttrName.'.' IDENT 
+
+	'/'  shift 17
+	'.'  shift 18
+	.  error
+
+
+state 12
+	AttrName:  IDENT.    (75)
+
+	.  reduce 75 (src line 515)
+
+
+state 13
+	Import:  IMPORT STRING.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 19
+
+state 14
+	IDL:  DocComments Imports DefaultNamespace Namespaces Definitions.    (1)
+	Definitions:  Definitions.Definition 
+	DocComments: .    (100)
+
+	$end  reduce 1 (src line 101)
+	.  reduce 100 (src line 622)
+
+	DocComments  goto 23
+	Definition  goto 22
+
+state 15
+	Namespaces:  Namespaces Namespace.    (6)
+
+	.  reduce 6 (src line 137)
+
+
+state 16
+	Namespace:  NAMESPACE.Language STRING CommaSemiOptional 
+
+	LANG  shift 25
+	.  error
+
+	Language  goto 24
+
+state 17
+	DefaultNamespace:  NAMESPACE AttrName '/'.PathName CommaSemiOptional 
+
+	IDENT  shift 27
+	.  error
+
+	PathName  goto 26
+
+state 18
+	AttrName:  AttrName '.'.IDENT 
+
+	IDENT  shift 28
+	.  error
+
+
+state 19
+	Import:  IMPORT STRING CommaSemiOptional.    (4)
+
+	.  reduce 4 (src line 114)
+
+
+state 20
+	CommaSemiOptional:  ','.    (98)
+
+	.  reduce 98 (src line 620)
+
+
+state 21
+	CommaSemiOptional:  ';'.    (99)
+
+	.  reduce 99 (src line 620)
+
+
+state 22
+	Definitions:  Definitions Definition.    (13)
+
+	.  reduce 13 (src line 168)
+
+
+state 23
+	Definition:  DocComments.CONST IDENT '{' $$14 Constants '}' 
+	Definition:  DocComments.ENUM IDENT '{' $$16 Enums '}' 
+	Definition:  DocComments.AttrLists OptionalAbstract STRUCT IDENT EXTENDS IDENT '{' $$18 Fields '}' 
+	Definition:  DocComments.AttrLists OptionalAbstract STRUCT IDENT '{' $$20 Fields '}' 
+	Definition:  DocComments.AttrLists SERVICE IDENT '{' $$22 Methods '}' 
+	DocComments:  DocComments.DocComment 
+	AttrLists: .    (67)
+
+	COMMENT  shift 5
+	CONST  shift 29
+	ENUM  shift 30
+	.  reduce 67 (src line 447)
+
+	DocComment  goto 4
+	AttrLists  goto 31
+
+state 24
+	Namespace:  NAMESPACE Language.STRING CommaSemiOptional 
+
+	STRING  shift 32
+	.  error
+
+
+state 25
+	Language:  LANG.    (11)
+
+	.  reduce 11 (src line 166)
+
+
+state 26
+	DefaultNamespace:  NAMESPACE AttrName '/' PathName.CommaSemiOptional 
+	PathName:  PathName.'/' IDENT 
+	CommaSemiOptional: .    (97)
+
+	'/'  shift 34
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 33
+
+state 27
+	PathName:  IDENT.    (9)
+
+	.  reduce 9 (src line 155)
+
+
+state 28
+	AttrName:  AttrName '.' IDENT.    (76)
+
+	.  reduce 76 (src line 520)
+
+
+state 29
+	Definition:  DocComments CONST.IDENT '{' $$14 Constants '}' 
+
+	IDENT  shift 35
+	.  error
+
+
+state 30
+	Definition:  DocComments ENUM.IDENT '{' $$16 Enums '}' 
+
+	IDENT  shift 36
+	.  error
+
+
+state 31
+	Definition:  DocComments AttrLists.OptionalAbstract STRUCT IDENT EXTENDS IDENT '{' $$18 Fields '}' 
+	Definition:  DocComments AttrLists.OptionalAbstract STRUCT IDENT '{' $$20 Fields '}' 
+	Definition:  DocComments AttrLists.SERVICE IDENT '{' $$22 Methods '}' 
+	AttrLists:  AttrLists.AttrList 
+	OptionalAbstract: .    (24)
+
+	SERVICE  shift 38
+	ABSTRACT  shift 40
+	'['  shift 41
+	'@'  shift 42
+	.  reduce 24 (src line 244)
+
+	AttrList  goto 39
+	OptionalAbstract  goto 37
+
+state 32
+	Namespace:  NAMESPACE Language STRING.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 43
+
+state 33
+	DefaultNamespace:  NAMESPACE AttrName '/' PathName CommaSemiOptional.    (8)
+
+	.  reduce 8 (src line 147)
+
+
+state 34
+	PathName:  PathName '/'.IDENT 
+
+	IDENT  shift 44
+	.  error
+
+
+state 35
+	Definition:  DocComments CONST IDENT.'{' $$14 Constants '}' 
+
+	'{'  shift 45
+	.  error
+
+
+state 36
+	Definition:  DocComments ENUM IDENT.'{' $$16 Enums '}' 
+
+	'{'  shift 46
+	.  error
+
+
+state 37
+	Definition:  DocComments AttrLists OptionalAbstract.STRUCT IDENT EXTENDS IDENT '{' $$18 Fields '}' 
+	Definition:  DocComments AttrLists OptionalAbstract.STRUCT IDENT '{' $$20 Fields '}' 
+
+	STRUCT  shift 47
+	.  error
+
+
+state 38
+	Definition:  DocComments AttrLists SERVICE.IDENT '{' $$22 Methods '}' 
+
+	IDENT  shift 48
+	.  error
+
+
+state 39
+	AttrLists:  AttrLists AttrList.    (68)
+
+	.  reduce 68 (src line 451)
+
+
+state 40
+	OptionalAbstract:  ABSTRACT.    (25)
+
+	.  reduce 25 (src line 248)
+
+
+state 41
+	AttrList:  '['.Attributes ']' 
+	Attributes: .    (71)
+
+	.  reduce 71 (src line 487)
+
+	Attributes  goto 49
+
+state 42
+	AttrList:  '@'.IDENT '[' Attributes ']' 
+
+	IDENT  shift 50
+	.  error
+
+
+state 43
+	Namespace:  NAMESPACE Language STRING CommaSemiOptional.    (7)
+
+	.  reduce 7 (src line 139)
+
+
+state 44
+	PathName:  PathName '/' IDENT.    (10)
+
+	.  reduce 10 (src line 160)
+
+
+state 45
+	Definition:  DocComments CONST IDENT '{'.$$14 Constants '}' 
+	$$14: .    (14)
+
+	.  reduce 14 (src line 170)
+
+	$$14  goto 51
+
+state 46
+	Definition:  DocComments ENUM IDENT '{'.$$16 Enums '}' 
+	$$16: .    (16)
+
+	.  reduce 16 (src line 184)
+
+	$$16  goto 52
+
+state 47
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT.IDENT EXTENDS IDENT '{' $$18 Fields '}' 
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT.IDENT '{' $$20 Fields '}' 
+
+	IDENT  shift 53
+	.  error
+
+
+state 48
+	Definition:  DocComments AttrLists SERVICE IDENT.'{' $$22 Methods '}' 
+
+	'{'  shift 54
+	.  error
+
+
+state 49
+	AttrList:  '[' Attributes.']' 
+	Attributes:  Attributes.Attribute 
+
+	IDENT  shift 12
+	']'  shift 55
+	.  error
+
+	Attribute  goto 56
+	AttrName  goto 57
+
+state 50
+	AttrList:  '@' IDENT.'[' Attributes ']' 
+
+	'['  shift 58
+	.  error
+
+
+state 51
+	Definition:  DocComments CONST IDENT '{' $$14.Constants '}' 
+	Constants: .    (26)
+
+	.  reduce 26 (src line 254)
+
+	Constants  goto 59
+
+state 52
+	Definition:  DocComments ENUM IDENT '{' $$16.Enums '}' 
+	Enums: .    (35)
+
+	.  reduce 35 (src line 294)
+
+	Enums  goto 60
+
+state 53
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT.EXTENDS IDENT '{' $$18 Fields '}' 
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT.'{' $$20 Fields '}' 
+
+	EXTENDS  shift 61
+	'{'  shift 62
+	.  error
+
+
+state 54
+	Definition:  DocComments AttrLists SERVICE IDENT '{'.$$22 Methods '}' 
+	$$22: .    (22)
+
+	.  reduce 22 (src line 228)
+
+	$$22  goto 63
+
+state 55
+	AttrList:  '[' Attributes ']'.    (69)
+
+	.  reduce 69 (src line 471)
+
+
+state 56
+	Attributes:  Attributes Attribute.    (72)
+
+	.  reduce 72 (src line 491)
+
+
+state 57
+	Attribute:  AttrName.CommaOptional 
+	Attribute:  AttrName.'(' AttrValues ')' CommaOptional 
+	AttrName:  AttrName.'.' IDENT 
+	CommaOptional: .    (95)
+
+	'('  shift 65
+	','  shift 66
+	'.'  shift 18
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 64
+
+state 58
+	AttrList:  '@' IDENT '['.Attributes ']' 
+	Attributes: .    (71)
+
+	.  reduce 71 (src line 487)
+
+	Attributes  goto 67
+
+state 59
+	Definition:  DocComments CONST IDENT '{' $$14 Constants.'}' 
+	Constants:  Constants.Constant 
+
+	IDENT  shift 70
+	'}'  shift 68
+	.  error
+
+	Constant  goto 69
+
+state 60
+	Definition:  DocComments ENUM IDENT '{' $$16 Enums.'}' 
+	Enums:  Enums.Enum 
+
+	IDENT  shift 73
+	'}'  shift 71
+	.  error
+
+	Enum  goto 72
+
+state 61
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT EXTENDS.IDENT '{' $$18 Fields '}' 
+
+	IDENT  shift 74
+	.  error
+
+
+state 62
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT '{'.$$20 Fields '}' 
+	$$20: .    (20)
+
+	.  reduce 20 (src line 213)
+
+	$$20  goto 75
+
+state 63
+	Definition:  DocComments AttrLists SERVICE IDENT '{' $$22.Methods '}' 
+	Methods: .    (42)
+
+	.  reduce 42 (src line 327)
+
+	Methods  goto 76
+
+state 64
+	Attribute:  AttrName CommaOptional.    (73)
+
+	.  reduce 73 (src line 502)
+
+
+state 65
+	Attribute:  AttrName '('.AttrValues ')' CommaOptional 
+	AttrValues: .    (77)
+
+	.  reduce 77 (src line 526)
+
+	AttrValues  goto 77
+
+state 66
+	CommaOptional:  ','.    (96)
+
+	.  reduce 96 (src line 619)
+
+
+state 67
+	AttrList:  '@' IDENT '[' Attributes.']' 
+	Attributes:  Attributes.Attribute 
+
+	IDENT  shift 12
+	']'  shift 78
+	.  error
+
+	Attribute  goto 56
+	AttrName  goto 57
+
+state 68
+	Definition:  DocComments CONST IDENT '{' $$14 Constants '}'.    (15)
+
+	.  reduce 15 (src line 179)
+
+
+state 69
+	Constants:  Constants Constant.    (27)
+
+	.  reduce 27 (src line 254)
+
+
+state 70
+	Constant:  IDENT.'=' INT CommaSemiOptional 
+	Constant:  IDENT.'=' '-' INT CommaSemiOptional 
+	Constant:  IDENT.'=' FLOAT CommaSemiOptional 
+	Constant:  IDENT.'=' '-' FLOAT CommaSemiOptional 
+	Constant:  IDENT.'=' STRING CommaSemiOptional 
+	Constant:  IDENT.'=' BOOL CommaSemiOptional 
+	Constant:  IDENT.'=' CHAR CommaSemiOptional 
+
+	'='  shift 79
+	.  error
+
+
+state 71
+	Definition:  DocComments ENUM IDENT '{' $$16 Enums '}'.    (17)
+
+	.  reduce 17 (src line 192)
+
+
+state 72
+	Enums:  Enums Enum.    (36)
+
+	.  reduce 36 (src line 294)
+
+
+state 73
+	Enum:  IDENT.'=' INT CommaOptional 
+	Enum:  IDENT.'=' '-' INT CommaOptional 
+
+	'='  shift 80
+	.  error
+
+
+state 74
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT EXTENDS IDENT.'{' $$18 Fields '}' 
+
+	'{'  shift 81
+	.  error
+
+
+state 75
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT '{' $$20.Fields '}' 
+	Fields: .    (39)
+
+	.  reduce 39 (src line 309)
+
+	Fields  goto 82
+
+state 76
+	Definition:  DocComments AttrLists SERVICE IDENT '{' $$22 Methods.'}' 
+	Methods:  Methods.Method 
+	DocComments: .    (100)
+
+	'}'  shift 83
+	.  reduce 100 (src line 622)
+
+	DocComments  goto 85
+	Method  goto 84
+
+state 77
+	Attribute:  AttrName '(' AttrValues.')' CommaOptional 
+	AttrValues:  AttrValues.AttrValue 
+
+	IDENT  shift 95
+	STRING  shift 91
+	CHAR  shift 93
+	INT  shift 88
+	FLOAT  shift 90
+	BOOL  shift 92
+	'-'  shift 89
+	')'  shift 86
+	.  error
+
+	AttrValue  goto 87
+	AttrName  goto 94
+
+state 78
+	AttrList:  '@' IDENT '[' Attributes ']'.    (70)
+
+	.  reduce 70 (src line 477)
+
+
+state 79
+	Constant:  IDENT '='.INT CommaSemiOptional 
+	Constant:  IDENT '='.'-' INT CommaSemiOptional 
+	Constant:  IDENT '='.FLOAT CommaSemiOptional 
+	Constant:  IDENT '='.'-' FLOAT CommaSemiOptional 
+	Constant:  IDENT '='.STRING CommaSemiOptional 
+	Constant:  IDENT '='.BOOL CommaSemiOptional 
+	Constant:  IDENT '='.CHAR CommaSemiOptional 
+
+	STRING  shift 99
+	CHAR  shift 101
+	INT  shift 96
+	FLOAT  shift 98
+	BOOL  shift 100
+	'-'  shift 97
+	.  error
+
+
+state 80
+	Enum:  IDENT '='.INT CommaOptional 
+	Enum:  IDENT '='.'-' INT CommaOptional 
+
+	INT  shift 102
+	'-'  shift 103
+	.  error
+
+
+state 81
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT EXTENDS IDENT '{'.$$18 Fields '}' 
+	$$18: .    (18)
+
+	.  reduce 18 (src line 197)
+
+	$$18  goto 104
+
+state 82
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT '{' $$20 Fields.'}' 
+	Fields:  Fields.Field 
+	DocComments: .    (100)
+
+	'}'  shift 105
+	.  reduce 100 (src line 622)
+
+	DocComments  goto 107
+	Field  goto 106
+
+state 83
+	Definition:  DocComments AttrLists SERVICE IDENT '{' $$22 Methods '}'.    (23)
+
+	.  reduce 23 (src line 237)
+
+
+state 84
+	Methods:  Methods Method.    (43)
+
+	.  reduce 43 (src line 327)
+
+
+state 85
+	Method:  DocComments.AttrLists TypeOrVoid IDENT '(' $$44 Parameters ')' CommaSemiOptional 
+	DocComments:  DocComments.DocComment 
+	AttrLists: .    (67)
+
+	COMMENT  shift 5
+	.  reduce 67 (src line 447)
+
+	DocComment  goto 4
+	AttrLists  goto 108
+
+state 86
+	Attribute:  AttrName '(' AttrValues ')'.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 109
+
+state 87
+	AttrValues:  AttrValues AttrValue.    (78)
+
+	.  reduce 78 (src line 530)
+
+
+state 88
+	AttrValue:  INT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 110
+
+state 89
+	AttrValue:  '-'.INT CommaOptional 
+	AttrValue:  '-'.FLOAT CommaOptional 
+
+	INT  shift 111
+	FLOAT  shift 112
+	.  error
+
+
+state 90
+	AttrValue:  FLOAT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 113
+
+state 91
+	AttrValue:  STRING.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 114
+
+state 92
+	AttrValue:  BOOL.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 115
+
+state 93
+	AttrValue:  CHAR.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 116
+
+state 94
+	AttrName:  AttrName.'.' IDENT 
+	AttrValue:  AttrName.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	'.'  shift 18
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 117
+
+state 95
+	AttrName:  IDENT.    (75)
+	AttrValue:  IDENT.'=' INT CommaOptional 
+	AttrValue:  IDENT.'=' '-' INT CommaOptional 
+	AttrValue:  IDENT.'=' FLOAT CommaOptional 
+	AttrValue:  IDENT.'=' '-' FLOAT CommaOptional 
+	AttrValue:  IDENT.'=' STRING CommaOptional 
+	AttrValue:  IDENT.'=' BOOL CommaOptional 
+	AttrValue:  IDENT.'=' CHAR CommaOptional 
+	AttrValue:  IDENT.'=' AttrName CommaOptional 
+
+	'='  shift 118
+	.  reduce 75 (src line 515)
+
+
+state 96
+	Constant:  IDENT '=' INT.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 119
+
+state 97
+	Constant:  IDENT '=' '-'.INT CommaSemiOptional 
+	Constant:  IDENT '=' '-'.FLOAT CommaSemiOptional 
+
+	INT  shift 120
+	FLOAT  shift 121
+	.  error
+
+
+state 98
+	Constant:  IDENT '=' FLOAT.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 122
+
+state 99
+	Constant:  IDENT '=' STRING.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 123
+
+state 100
+	Constant:  IDENT '=' BOOL.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 124
+
+state 101
+	Constant:  IDENT '=' CHAR.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 125
+
+state 102
+	Enum:  IDENT '=' INT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 126
+
+state 103
+	Enum:  IDENT '=' '-'.INT CommaOptional 
+
+	INT  shift 127
+	.  error
+
+
+state 104
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT EXTENDS IDENT '{' $$18.Fields '}' 
+	Fields: .    (39)
+
+	.  reduce 39 (src line 309)
+
+	Fields  goto 128
+
+state 105
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT '{' $$20 Fields '}'.    (21)
+
+	.  reduce 21 (src line 223)
+
+
+state 106
+	Fields:  Fields Field.    (40)
+
+	.  reduce 40 (src line 309)
+
+
+state 107
+	Field:  DocComments.AttrLists Type IDENT OptInitializer CommaSemiOptional 
+	DocComments:  DocComments.DocComment 
+	AttrLists: .    (67)
+
+	COMMENT  shift 5
+	.  reduce 67 (src line 447)
+
+	DocComment  goto 4
+	AttrLists  goto 129
+
+state 108
+	Method:  DocComments AttrLists.TypeOrVoid IDENT '(' $$44 Parameters ')' CommaSemiOptional 
+	AttrLists:  AttrLists.AttrList 
+
+	IDENT  shift 134
+	BINARY  shift 135
+	BASETYPE  shift 133
+	LIST  shift 136
+	MAP  shift 137
+	VOID  shift 131
+	'['  shift 41
+	'@'  shift 42
+	.  error
+
+	Type  goto 132
+	AttrList  goto 39
+	TypeOrVoid  goto 130
+
+state 109
+	Attribute:  AttrName '(' AttrValues ')' CommaOptional.    (74)
+
+	.  reduce 74 (src line 508)
+
+
+state 110
+	AttrValue:  INT CommaOptional.    (79)
+
+	.  reduce 79 (src line 536)
+
+
+state 111
+	AttrValue:  '-' INT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 138
+
+state 112
+	AttrValue:  '-' FLOAT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 139
+
+state 113
+	AttrValue:  FLOAT CommaOptional.    (81)
+
+	.  reduce 81 (src line 547)
+
+
+state 114
+	AttrValue:  STRING CommaOptional.    (83)
+
+	.  reduce 83 (src line 557)
+
+
+state 115
+	AttrValue:  BOOL CommaOptional.    (84)
+
+	.  reduce 84 (src line 562)
+
+
+state 116
+	AttrValue:  CHAR CommaOptional.    (85)
+
+	.  reduce 85 (src line 567)
+
+
+state 117
+	AttrValue:  AttrName CommaOptional.    (86)
+
+	.  reduce 86 (src line 572)
+
+
+state 118
+	AttrValue:  IDENT '='.INT CommaOptional 
+	AttrValue:  IDENT '='.'-' INT CommaOptional 
+	AttrValue:  IDENT '='.FLOAT CommaOptional 
+	AttrValue:  IDENT '='.'-' FLOAT CommaOptional 
+	AttrValue:  IDENT '='.STRING CommaOptional 
+	AttrValue:  IDENT '='.BOOL CommaOptional 
+	AttrValue:  IDENT '='.CHAR CommaOptional 
+	AttrValue:  IDENT '='.AttrName CommaOptional 
+
+	IDENT  shift 12
+	STRING  shift 143
+	CHAR  shift 145
+	INT  shift 140
+	FLOAT  shift 142
+	BOOL  shift 144
+	'-'  shift 141
+	.  error
+
+	AttrName  goto 146
+
+state 119
+	Constant:  IDENT '=' INT CommaSemiOptional.    (28)
+
+	.  reduce 28 (src line 256)
+
+
+state 120
+	Constant:  IDENT '=' '-' INT.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 147
+
+state 121
+	Constant:  IDENT '=' '-' FLOAT.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 148
+
+state 122
+	Constant:  IDENT '=' FLOAT CommaSemiOptional.    (30)
+
+	.  reduce 30 (src line 267)
+
+
+state 123
+	Constant:  IDENT '=' STRING CommaSemiOptional.    (32)
+
+	.  reduce 32 (src line 277)
+
+
+state 124
+	Constant:  IDENT '=' BOOL CommaSemiOptional.    (33)
+
+	.  reduce 33 (src line 282)
+
+
+state 125
+	Constant:  IDENT '=' CHAR CommaSemiOptional.    (34)
+
+	.  reduce 34 (src line 287)
+
+
+state 126
+	Enum:  IDENT '=' INT CommaOptional.    (37)
+
+	.  reduce 37 (src line 296)
+
+
+state 127
+	Enum:  IDENT '=' '-' INT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 149
+
+state 128
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT EXTENDS IDENT '{' $$18 Fields.'}' 
+	Fields:  Fields.Field 
+	DocComments: .    (100)
+
+	'}'  shift 150
+	.  reduce 100 (src line 622)
+
+	DocComments  goto 107
+	Field  goto 106
+
+state 129
+	Field:  DocComments AttrLists.Type IDENT OptInitializer CommaSemiOptional 
+	AttrLists:  AttrLists.AttrList 
+
+	IDENT  shift 134
+	BINARY  shift 135
+	BASETYPE  shift 133
+	LIST  shift 136
+	MAP  shift 137
+	'['  shift 41
+	'@'  shift 42
+	.  error
+
+	Type  goto 151
+	AttrList  goto 39
+
+state 130
+	Method:  DocComments AttrLists TypeOrVoid.IDENT '(' $$44 Parameters ')' CommaSemiOptional 
+
+	IDENT  shift 152
+	.  error
+
+
+state 131
+	TypeOrVoid:  VOID.    (46)
+
+	.  reduce 46 (src line 345)
+
+
+state 132
+	TypeOrVoid:  Type.    (47)
+
+	.  reduce 47 (src line 350)
+
+
+state 133
+	Type:  BASETYPE.    (51)
+
+	.  reduce 51 (src line 374)
+
+
+state 134
+	Type:  IDENT.    (52)
+
+	.  reduce 52 (src line 379)
+
+
+state 135
+	Type:  BINARY.    (53)
+
+	.  reduce 53 (src line 383)
+
+
+state 136
+	Type:  LIST.'<' Type OptionalAs '>' 
+
+	'<'  shift 153
+	.  error
+
+
+state 137
+	Type:  MAP.'<' BASETYPE OptionalAs ',' Type OptionalAs '>' 
+
+	'<'  shift 154
+	.  error
+
+
+state 138
+	AttrValue:  '-' INT CommaOptional.    (80)
+
+	.  reduce 80 (src line 542)
+
+
+state 139
+	AttrValue:  '-' FLOAT CommaOptional.    (82)
+
+	.  reduce 82 (src line 552)
+
+
+state 140
+	AttrValue:  IDENT '=' INT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 155
+
+state 141
+	AttrValue:  IDENT '=' '-'.INT CommaOptional 
+	AttrValue:  IDENT '=' '-'.FLOAT CommaOptional 
+
+	INT  shift 156
+	FLOAT  shift 157
+	.  error
+
+
+state 142
+	AttrValue:  IDENT '=' FLOAT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 158
+
+state 143
+	AttrValue:  IDENT '=' STRING.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 159
+
+state 144
+	AttrValue:  IDENT '=' BOOL.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 160
+
+state 145
+	AttrValue:  IDENT '=' CHAR.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 161
+
+state 146
+	AttrName:  AttrName.'.' IDENT 
+	AttrValue:  IDENT '=' AttrName.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	'.'  shift 18
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 162
+
+state 147
+	Constant:  IDENT '=' '-' INT CommaSemiOptional.    (29)
+
+	.  reduce 29 (src line 262)
+
+
+state 148
+	Constant:  IDENT '=' '-' FLOAT CommaSemiOptional.    (31)
+
+	.  reduce 31 (src line 272)
+
+
+state 149
+	Enum:  IDENT '=' '-' INT CommaOptional.    (38)
+
+	.  reduce 38 (src line 302)
+
+
+state 150
+	Definition:  DocComments AttrLists OptionalAbstract STRUCT IDENT EXTENDS IDENT '{' $$18 Fields '}'.    (19)
+
+	.  reduce 19 (src line 208)
+
+
+state 151
+	Field:  DocComments AttrLists Type.IDENT OptInitializer CommaSemiOptional 
+
+	IDENT  shift 163
+	.  error
+
+
+state 152
+	Method:  DocComments AttrLists TypeOrVoid IDENT.'(' $$44 Parameters ')' CommaSemiOptional 
+
+	'('  shift 164
+	.  error
+
+
+state 153
+	Type:  LIST '<'.Type OptionalAs '>' 
+
+	IDENT  shift 134
+	BINARY  shift 135
+	BASETYPE  shift 133
+	LIST  shift 136
+	MAP  shift 137
+	.  error
+
+	Type  goto 165
+
+state 154
+	Type:  MAP '<'.BASETYPE OptionalAs ',' Type OptionalAs '>' 
+
+	BASETYPE  shift 166
+	.  error
+
+
+state 155
+	AttrValue:  IDENT '=' INT CommaOptional.    (87)
+
+	.  reduce 87 (src line 577)
+
+
+state 156
+	AttrValue:  IDENT '=' '-' INT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 167
+
+state 157
+	AttrValue:  IDENT '=' '-' FLOAT.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 168
+
+state 158
+	AttrValue:  IDENT '=' FLOAT CommaOptional.    (89)
+
+	.  reduce 89 (src line 587)
+
+
+state 159
+	AttrValue:  IDENT '=' STRING CommaOptional.    (91)
+
+	.  reduce 91 (src line 597)
+
+
+state 160
+	AttrValue:  IDENT '=' BOOL CommaOptional.    (92)
+
+	.  reduce 92 (src line 602)
+
+
+state 161
+	AttrValue:  IDENT '=' CHAR CommaOptional.    (93)
+
+	.  reduce 93 (src line 607)
+
+
+state 162
+	AttrValue:  IDENT '=' AttrName CommaOptional.    (94)
+
+	.  reduce 94 (src line 612)
+
+
+state 163
+	Field:  DocComments AttrLists Type IDENT.OptInitializer CommaSemiOptional 
+	OptInitializer: .    (58)
+
+	'='  shift 170
+	.  reduce 58 (src line 409)
+
+	OptInitializer  goto 169
+
+state 164
+	Method:  DocComments AttrLists TypeOrVoid IDENT '('.$$44 Parameters ')' CommaSemiOptional 
+	$$44: .    (44)
+
+	.  reduce 44 (src line 329)
+
+	$$44  goto 171
+
+state 165
+	Type:  LIST '<' Type.OptionalAs '>' 
+	OptionalAs: .    (56)
+
+	AS  shift 173
+	.  reduce 56 (src line 399)
+
+	OptionalAs  goto 172
+
+state 166
+	Type:  MAP '<' BASETYPE.OptionalAs ',' Type OptionalAs '>' 
+	OptionalAs: .    (56)
+
+	AS  shift 173
+	.  reduce 56 (src line 399)
+
+	OptionalAs  goto 174
+
+state 167
+	AttrValue:  IDENT '=' '-' INT CommaOptional.    (88)
+
+	.  reduce 88 (src line 582)
+
+
+state 168
+	AttrValue:  IDENT '=' '-' FLOAT CommaOptional.    (90)
+
+	.  reduce 90 (src line 592)
+
+
+state 169
+	Field:  DocComments AttrLists Type IDENT OptInitializer.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 175
+
+state 170
+	OptInitializer:  '='.INT 
+	OptInitializer:  '='.'-' INT 
+	OptInitializer:  '='.FLOAT 
+	OptInitializer:  '='.'-' FLOAT 
+	OptInitializer:  '='.STRING 
+	OptInitializer:  '='.BOOL 
+	OptInitializer:  '='.CHAR 
+	OptInitializer:  '='.IDENT '.' IDENT 
+
+	IDENT  shift 182
+	STRING  shift 179
+	CHAR  shift 181
+	INT  shift 176
+	FLOAT  shift 178
+	BOOL  shift 180
+	'-'  shift 177
+	.  error
+
+
+state 171
+	Method:  DocComments AttrLists TypeOrVoid IDENT '(' $$44.Parameters ')' CommaSemiOptional 
+	Parameters: .    (48)
+
+	.  reduce 48 (src line 356)
+
+	Parameters  goto 183
+
+state 172
+	Type:  LIST '<' Type OptionalAs.'>' 
+
+	'>'  shift 184
+	.  error
+
+
+state 173
+	OptionalAs:  AS.STRING 
+
+	STRING  shift 185
+	.  error
+
+
+state 174
+	Type:  MAP '<' BASETYPE OptionalAs.',' Type OptionalAs '>' 
+
+	','  shift 186
+	.  error
+
+
+state 175
+	Field:  DocComments AttrLists Type IDENT OptInitializer CommaSemiOptional.    (41)
+
+	.  reduce 41 (src line 311)
+
+
+state 176
+	OptInitializer:  '=' INT.    (59)
+
+	.  reduce 59 (src line 413)
+
+
+state 177
+	OptInitializer:  '=' '-'.INT 
+	OptInitializer:  '=' '-'.FLOAT 
+
+	INT  shift 187
+	FLOAT  shift 188
+	.  error
+
+
+state 178
+	OptInitializer:  '=' FLOAT.    (61)
+
+	.  reduce 61 (src line 421)
+
+
+state 179
+	OptInitializer:  '=' STRING.    (63)
+
+	.  reduce 63 (src line 429)
+
+
+state 180
+	OptInitializer:  '=' BOOL.    (64)
+
+	.  reduce 64 (src line 433)
+
+
+state 181
+	OptInitializer:  '=' CHAR.    (65)
+
+	.  reduce 65 (src line 437)
+
+
+state 182
+	OptInitializer:  '=' IDENT.'.' IDENT 
+
+	'.'  shift 189
+	.  error
+
+
+state 183
+	Method:  DocComments AttrLists TypeOrVoid IDENT '(' $$44 Parameters.')' CommaSemiOptional 
+	Parameters:  Parameters.Parameter 
+	DocComments: .    (100)
+
+	')'  shift 190
+	.  reduce 100 (src line 622)
+
+	DocComments  goto 192
+	Parameter  goto 191
+
+state 184
+	Type:  LIST '<' Type OptionalAs '>'.    (54)
+
+	.  reduce 54 (src line 387)
+
+
+state 185
+	OptionalAs:  AS STRING.    (57)
+
+	.  reduce 57 (src line 403)
+
+
+state 186
+	Type:  MAP '<' BASETYPE OptionalAs ','.Type OptionalAs '>' 
+
+	IDENT  shift 134
+	BINARY  shift 135
+	BASETYPE  shift 133
+	LIST  shift 136
+	MAP  shift 137
+	.  error
+
+	Type  goto 193
+
+state 187
+	OptInitializer:  '=' '-' INT.    (60)
+
+	.  reduce 60 (src line 417)
+
+
+state 188
+	OptInitializer:  '=' '-' FLOAT.    (62)
+
+	.  reduce 62 (src line 425)
+
+
+state 189
+	OptInitializer:  '=' IDENT '.'.IDENT 
+
+	IDENT  shift 194
+	.  error
+
+
+state 190
+	Method:  DocComments AttrLists TypeOrVoid IDENT '(' $$44 Parameters ')'.CommaSemiOptional 
+	CommaSemiOptional: .    (97)
+
+	','  shift 20
+	';'  shift 21
+	.  reduce 97 (src line 620)
+
+	CommaSemiOptional  goto 195
+
+state 191
+	Parameters:  Parameters Parameter.    (49)
+
+	.  reduce 49 (src line 356)
+
+
+state 192
+	Parameter:  DocComments.AttrLists Type IDENT OptInitializer CommaOptional 
+	DocComments:  DocComments.DocComment 
+	AttrLists: .    (67)
+
+	COMMENT  shift 5
+	.  reduce 67 (src line 447)
+
+	DocComment  goto 4
+	AttrLists  goto 196
+
+state 193
+	Type:  MAP '<' BASETYPE OptionalAs ',' Type.OptionalAs '>' 
+	OptionalAs: .    (56)
+
+	AS  shift 173
+	.  reduce 56 (src line 399)
+
+	OptionalAs  goto 197
+
+state 194
+	OptInitializer:  '=' IDENT '.' IDENT.    (66)
+
+	.  reduce 66 (src line 441)
+
+
+state 195
+	Method:  DocComments AttrLists TypeOrVoid IDENT '(' $$44 Parameters ')' CommaSemiOptional.    (45)
+
+	.  reduce 45 (src line 339)
+
+
+state 196
+	Parameter:  DocComments AttrLists.Type IDENT OptInitializer CommaOptional 
+	AttrLists:  AttrLists.AttrList 
+
+	IDENT  shift 134
+	BINARY  shift 135
+	BASETYPE  shift 133
+	LIST  shift 136
+	MAP  shift 137
+	'['  shift 41
+	'@'  shift 42
+	.  error
+
+	Type  goto 198
+	AttrList  goto 39
+
+state 197
+	Type:  MAP '<' BASETYPE OptionalAs ',' Type OptionalAs.'>' 
+
+	'>'  shift 199
+	.  error
+
+
+state 198
+	Parameter:  DocComments AttrLists Type.IDENT OptInitializer CommaOptional 
+
+	IDENT  shift 200
+	.  error
+
+
+state 199
+	Type:  MAP '<' BASETYPE OptionalAs ',' Type OptionalAs '>'.    (55)
+
+	.  reduce 55 (src line 392)
+
+
+state 200
+	Parameter:  DocComments AttrLists Type IDENT.OptInitializer CommaOptional 
+	OptInitializer: .    (58)
+
+	'='  shift 170
+	.  reduce 58 (src line 409)
+
+	OptInitializer  goto 201
+
+state 201
+	Parameter:  DocComments AttrLists Type IDENT OptInitializer.CommaOptional 
+	CommaOptional: .    (95)
+
+	','  shift 66
+	.  reduce 95 (src line 619)
+
+	CommaOptional  goto 202
+
+state 202
+	Parameter:  DocComments AttrLists Type IDENT OptInitializer CommaOptional.    (50)
+
+	.  reduce 50 (src line 358)
+
+
+40 terminals, 43 nonterminals
+103 grammar rules, 203/2000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+92 working sets used
+memory: parser 127/30000
+45 extra closures
+191 shift entries, 2 exceptions
+92 goto entries
+11 entries saved by goto default
+Optimizer space used: output 226/30000
+226 table entries, 0 zero
+maximum spread: 40, maximum offset: 201

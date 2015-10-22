@@ -1,0 +1,8 @@
+
+// default namespace malformatted
+
+namespace company..com//A..B
+
+enum Foo {
+	ONE = 1, TWO = 2
+}

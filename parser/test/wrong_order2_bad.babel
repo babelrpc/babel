@@ -1,0 +1,9 @@
+
+enum X { A = 1, B = 2 }
+
+namespace company.com/foo
+namespace java "com.company.foo"
+namespace csharp "Company.Foo"
+namespace asp "Foo"
+
+// namespaces must come before content definitions
