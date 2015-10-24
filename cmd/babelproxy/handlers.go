@@ -26,7 +26,7 @@ func loadBabelFiles(args []string) (*idl.Idl, error) {
 	// create base IDL to aggregate into
 	var midl idl.Idl
 	midl.Init()
-	midl.AddDefaultNamespace("babelrpc.github.io", "Foo/Bar")
+	midl.AddDefaultNamespace("babelrpc.io", "Foo/Bar")
 
 	// load specified IDL files into it
 	for _, infilePat := range args {

@@ -27,7 +27,7 @@ Examples
 
 Babel files are processed exactly like the babel tool processes them, so you can specify multiple Babel files on the command line to assemble them into one Swagger file.
 
-	babel2swagger -out service.json -host babelrpc.github.io -basepath /service -flat -title "My Service" *.babel
+	babel2swagger -out service.json -host babelrpc.io -basepath /service -flat -title "My Service" *.babel
 
 Limitations
 -----------

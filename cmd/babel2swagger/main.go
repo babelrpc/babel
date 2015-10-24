@@ -96,7 +96,7 @@ func main() {
 	// create base IDL to aggregate into
 	var midl idl.Idl
 	midl.Init()
-	midl.AddDefaultNamespace("babelrpc.github.io", "Foo/Bar")
+	midl.AddDefaultNamespace("babelrpc.io", "Foo/Bar")
 
 	// load specified IDL files into it
 	for _, infilePat := range flag.Args() {
