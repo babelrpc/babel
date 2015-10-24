@@ -143,11 +143,11 @@ func (idl *Idl) AddDefaultNamespace(domain, ns string) error {
 		idl.Namespaces["ios"] = strings.ToUpper(s[0:slen])
 	}
 
-	// namespace company.com One.Two -> company/one/two
-	// this one would be manual: github.com/company/one/two
+	// namespace company.com One.Two -> company.com/one/two
+	// this one would be manual: company/one/two
 	_, ok = idl.Namespaces["go"]
 	if !ok {
-		idl.Namespaces["go"] = strings.ToLower(domarr[len(domarr)-1] + "/" + strings.Join(arr, "/"))
+		idl.Namespaces["go"] = strings.ToLower(strings.Join(domarr, ".") + "/" + strings.Join(arr, "/"))
 	}
 
 	// namespace company.com One.Two -> OneTwo (prefix on classes)
