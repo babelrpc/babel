@@ -4,6 +4,7 @@ FROM golang
 ADD . /go/src/github.com/babelrpc/babel
 
 # tools needed
+RUN go get golang.org/x/tools/cmd/goyacc
 RUN go get golang.org/x/tools/cmd/stringer
 RUN go get github.com/ancientlore/binder
 

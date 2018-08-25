@@ -8,5 +8,4 @@
 */
 package parser
 
-//go:generate -command yacc go tool yacc
-//go:generate yacc -o parseidl.go parseidl.y
+//go:generate goyacc -o parseidl.go parseidl.y

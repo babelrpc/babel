@@ -47,6 +47,7 @@ func TestBabelFiles(t *testing.T) {
 
 	for _, lang := range languages {
 		for _, file := range files {
+			t.Log(file)
 			_, err := ParseIdl(file, lang)
 			if strings.HasSuffix(file, "_bad.babel") {
 				if err == nil {

@@ -18,6 +18,16 @@ The main Babel libraries are:
 * [babeltemplates](babeltemplates) - Language templates for Babel.
 * [generator](generator) - Code for language-specific code generators.
 * [idl](idl) - Code for Babel's Interface Definition Language.
-* [parser](parser) - A [YACC](http://golang.org/cmd/yacc/)-based parser for Babel files.
+* [parser](parser) - A [goyacc](https://golang.org/x/tools/cmd/goyacc)-based parser for Babel files.
 * [rest](rest) - Process RESTful annotations (attributes) in Babel files.
 * [swagger2](https://github.com/babelrpc/swagger2) - Serialize Swagger 2 structures to JSON and YAML.
+
+## Build Tools
+
+To fully build babel, you will need:
+
+* [binder](https://github.com/ancientlore/binder)
+* [stringer](https://golang.org/x/tools/cmd/stringer)
+* [goyacc](https://golang.org/x/tools/cmd/goyacc)
+
+These are used by the `go generate`. You won't need it just to compile.
