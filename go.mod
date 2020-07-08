@@ -2,8 +2,8 @@ module github.com/babelrpc/babel
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/ancientlore/flagcfg v1.0.1
-	github.com/ancientlore/kubismus v1.0.1
+	github.com/ancientlore/flagcfg v1.0.2
+	github.com/ancientlore/kubismus v1.0.2
 	github.com/babelrpc/swagger2 v0.1.0
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/facebookgo/ensure v0.0.0-20200202191622-63f1cf65ac4c // indirect
