@@ -123,6 +123,7 @@ var yyToknames = [...]string{
 	"'@'",
 	"';'",
 }
+
 var yyStatenames = [...]string{}
 
 const yyEofCode = 1
@@ -313,7 +314,6 @@ const yyPrivate = 57344
 const yyLast = 226
 
 var yyAct = [...]int{
-
 	64, 132, 169, 172, 57, 19, 107, 2, 49, 82,
 	134, 31, 12, 11, 12, 58, 134, 135, 189, 38,
 	40, 23, 66, 135, 186, 20, 199, 133, 136, 137,
@@ -338,8 +338,8 @@ var yyAct = [...]int{
 	15, 7, 14, 10, 6, 3, 1, 26, 37, 130,
 	77, 87, 39, 56, 4, 24,
 }
-var yyPact = [...]int{
 
+var yyPact = [...]int{
 	-1000, -1000, 119, 112, -1000, -1000, -1000, -1000, 181, 151,
 	105, 38, -1000, -10, -1000, -1000, 103, 180, 179, -1000,
 	-1000, -1000, -1000, 106, 137, -1000, 15, -1000, -1000, 178,
@@ -362,16 +362,16 @@ var yyPact = [...]int{
 	-10, -1000, 119, 74, -1000, -1000, 12, -8, 159, -1000,
 	37, -13, -1000,
 }
-var yyPgo = [...]int{
 
+var yyPgo = [...]int{
 	0, 225, 1, 6, 224, 223, 8, 222, 11, 221,
 	220, 2, 3, 219, 218, 4, 217, 216, 215, 214,
 	213, 212, 211, 5, 210, 209, 208, 207, 206, 205,
 	201, 9, 200, 199, 195, 194, 193, 0, 192, 191,
 	189, 187, 186,
 }
-var yyR1 = [...]int{
 
+var yyR1 = [...]int{
 	0, 17, 18, 18, 22, 20, 20, 24, 19, 16,
 	16, 1, 21, 21, 26, 25, 28, 25, 30, 25,
 	32, 25, 33, 25, 14, 14, 27, 27, 35, 35,
@@ -384,8 +384,8 @@ var yyR1 = [...]int{
 	9, 9, 9, 9, 9, 37, 37, 23, 23, 23,
 	3, 3, 4,
 }
-var yyR2 = [...]int{
 
+var yyR2 = [...]int{
 	0, 5, 0, 2, 3, 0, 2, 4, 5, 1,
 	3, 1, 0, 2, 0, 7, 0, 7, 0, 11,
 	0, 9, 0, 8, 0, 1, 0, 2, 4, 5,
@@ -398,8 +398,8 @@ var yyR2 = [...]int{
 	5, 4, 4, 4, 4, 0, 1, 0, 1, 1,
 	0, 2, 1,
 }
-var yyChk = [...]int{
 
+var yyChk = [...]int{
 	-1000, -17, -3, -18, -4, 10, -19, -22, 13, 12,
 	-20, -15, 4, 5, -21, -24, 13, 26, 36, -23,
 	35, 40, -25, -3, -1, 14, -16, 4, 4, 15,
@@ -422,8 +422,8 @@ var yyChk = [...]int{
 	32, -42, -3, -2, 4, -23, -8, -12, -2, 34,
 	4, -11, -37,
 }
-var yyDef = [...]int{
 
+var yyDef = [...]int{
 	100, -2, 2, 0, 101, 102, 5, 3, 0, 0,
 	12, 0, 75, 97, -2, 6, 0, 0, 0, 4,
 	98, 99, 13, 67, 0, 11, 97, 9, 76, 0,
@@ -446,8 +446,8 @@ var yyDef = [...]int{
 	97, 49, 67, 56, 66, 45, 0, 0, 0, 55,
 	58, 95, 50,
 }
-var yyTok1 = [...]int{
 
+var yyTok1 = [...]int{
 	1, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
@@ -462,12 +462,13 @@ var yyTok1 = [...]int{
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 3, 3, 27, 3, 28,
 }
-var yyTok2 = [...]int{
 
+var yyTok2 = [...]int{
 	2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
 	12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
 	22, 23, 24, 25,
 }
+
 var yyTok3 = [...]int{
 	0,
 }
@@ -811,13 +812,13 @@ yydefault:
 
 	case 1:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:107
+//line parseidl.y:107
 		{
 			yylex.(*IdlLex).globals.pidl.Comments = yyDollar[1].Comments
 		}
 	case 4:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:116
+//line parseidl.y:116
 		{
 			//fmt.Printf("import \"%s\"\n", $2)
 			fpath := path.Join(yylex.(*IdlLex).globals.basedir, yyDollar[2].String)
@@ -839,33 +840,33 @@ yydefault:
 		}
 	case 7:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:141
+//line parseidl.y:141
 		{
 			// fmt.Printf("namespace %s \"%s\"\n", $2, $3)
 			check(yylex.(*IdlLex).globals.pidl.AddNamespace(yyDollar[2].Ident, yyDollar[3].String), false, yylex)
 		}
 	case 8:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:149
+//line parseidl.y:149
 		{
 			// fmt.Printf("namespace %s \"%s\"\n", $2, $3)
 			check(yylex.(*IdlLex).globals.pidl.AddDefaultNamespace(yyDollar[2].Ident, yyDollar[4].Ident), false, yylex)
 		}
 	case 9:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:157
+//line parseidl.y:157
 		{
 			yyVAL.Ident = yyDollar[1].Ident
 		}
 	case 10:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:161
+//line parseidl.y:161
 		{
 			yyVAL.Ident = yyDollar[1].Ident + "/" + yyDollar[3].Ident
 		}
 	case 14:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:172
+//line parseidl.y:172
 		{
 			//fmt.Printf("const %s {\n", $2)
 			var err error
@@ -875,14 +876,14 @@ yydefault:
 		}
 	case 15:
 		yyDollar = yyS[yypt-7 : yypt+1]
-		//line parseidl.y:180
+//line parseidl.y:180
 		{
 			//fmt.Printf("}\n")
 			yylex.(*IdlLex).globals.currentConst = nil
 		}
 	case 16:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:185
+//line parseidl.y:185
 		{
 			//fmt.Printf("enum %s {\n", $2)
 			var err error
@@ -892,14 +893,14 @@ yydefault:
 		}
 	case 17:
 		yyDollar = yyS[yypt-7 : yypt+1]
-		//line parseidl.y:193
+//line parseidl.y:193
 		{
 			//fmt.Printf("}\n")
 			yylex.(*IdlLex).globals.currentEnum = nil
 		}
 	case 18:
 		yyDollar = yyS[yypt-8 : yypt+1]
-		//line parseidl.y:198
+//line parseidl.y:198
 		{
 			//fmt.Printf("struct %s extends %s {\n", $5, $7)
 			var err error
@@ -912,14 +913,14 @@ yydefault:
 		}
 	case 19:
 		yyDollar = yyS[yypt-11 : yypt+1]
-		//line parseidl.y:209
+//line parseidl.y:209
 		{
 			//fmt.Printf("}\n")
 			yylex.(*IdlLex).globals.currentStruct = nil
 		}
 	case 20:
 		yyDollar = yyS[yypt-6 : yypt+1]
-		//line parseidl.y:214
+//line parseidl.y:214
 		{
 			//fmt.Printf("struct %s {\n", $5)
 			var err error
@@ -931,14 +932,14 @@ yydefault:
 		}
 	case 21:
 		yyDollar = yyS[yypt-9 : yypt+1]
-		//line parseidl.y:224
+//line parseidl.y:224
 		{
 			//fmt.Printf("}\n")
 			yylex.(*IdlLex).globals.currentStruct = nil
 		}
 	case 22:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:229
+//line parseidl.y:229
 		{
 			//fmt.Printf("struct %s {\n", $4)
 			var err error
@@ -949,89 +950,89 @@ yydefault:
 		}
 	case 23:
 		yyDollar = yyS[yypt-8 : yypt+1]
-		//line parseidl.y:238
+//line parseidl.y:238
 		{
 			//fmt.Printf("}\n")
 			yylex.(*IdlLex).globals.currentService = nil
 		}
 	case 24:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:245
+//line parseidl.y:245
 		{
 			yyVAL.Bool = false
 		}
 	case 25:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:249
+//line parseidl.y:249
 		{
 			yyVAL.Bool = true
 		}
 	case 28:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:258
+//line parseidl.y:258
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, yyDollar[3].Int, "int"), false, yylex)
 			// fmt.Printf("\t%s = %d\n", $1, $3)
 		}
 	case 29:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:263
+//line parseidl.y:263
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, -yyDollar[4].Int, "int"), false, yylex)
 			// fmt.Printf("\t%s = %d\n", $1, $3)
 		}
 	case 30:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:268
+//line parseidl.y:268
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, yyDollar[3].Float, "float"), false, yylex)
 			//fmt.Printf("\t%s = %f\n", $1, $3)
 		}
 	case 31:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:273
+//line parseidl.y:273
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, -yyDollar[4].Float, "float"), false, yylex)
 			//fmt.Printf("\t%s = %f\n", $1, $3)
 		}
 	case 32:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:278
+//line parseidl.y:278
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, yyDollar[3].String, "string"), false, yylex)
 			//fmt.Printf("\t%s = \"%s\"\n", $1, $3)
 		}
 	case 33:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:283
+//line parseidl.y:283
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, yyDollar[3].Bool, "bool"), false, yylex)
 			//fmt.Printf("\t%s = \"%s\"\n", $1, $3)
 		}
 	case 34:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:288
+//line parseidl.y:288
 		{
 			check(yylex.(*IdlLex).globals.currentConst.Add(yyDollar[1].Ident, yyDollar[3].Char, "char"), false, yylex)
 			//fmt.Printf("\t%s = \'%c\'\n", $1, $3)
 		}
 	case 37:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:298
+//line parseidl.y:298
 		{
 			//fmt.Printf("\t%s = %d\n", $1, $3)
 			check(yylex.(*IdlLex).globals.currentEnum.Add(yyDollar[1].Ident, yyDollar[3].Int), false, yylex)
 		}
 	case 38:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:303
+//line parseidl.y:303
 		{
 			//fmt.Printf("\t%s = %d\n", $1, $3)
 			check(yylex.(*IdlLex).globals.currentEnum.Add(yyDollar[1].Ident, -yyDollar[4].Int), false, yylex)
 		}
 	case 41:
 		yyDollar = yyS[yypt-6 : yypt+1]
-		//line parseidl.y:313
+//line parseidl.y:313
 		{
 			//fmt.Printf("\t%s %s\n", $3, $4)
 			yyDollar[3].DataType.Rename = yyDollar[4].Ident
@@ -1046,7 +1047,7 @@ yydefault:
 		}
 	case 44:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:331
+//line parseidl.y:331
 		{
 			//fmt.Printf("\t%s %s\n", $3, $4)
 			var err error
@@ -1057,25 +1058,25 @@ yydefault:
 		}
 	case 45:
 		yyDollar = yyS[yypt-9 : yypt+1]
-		//line parseidl.y:340
+//line parseidl.y:340
 		{
 			yylex.(*IdlLex).globals.currentMethod = nil
 		}
 	case 46:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:347
+//line parseidl.y:347
 		{
 			yyVAL.DataType = &idl.Type{Name: "void"}
 		}
 	case 47:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:351
+//line parseidl.y:351
 		{
 			yyVAL.DataType = yyDollar[1].DataType
 		}
 	case 50:
 		yyDollar = yyS[yypt-6 : yypt+1]
-		//line parseidl.y:360
+//line parseidl.y:360
 		{
 			//fmt.Printf("\t%s %s\n", $3, $4)
 			yyDollar[3].DataType.Rename = yyDollar[4].Ident
@@ -1090,111 +1091,111 @@ yydefault:
 		}
 	case 51:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:376
+//line parseidl.y:376
 		{
 			yyVAL.DataType = &idl.Type{Name: yyDollar[1].Ident}
 		}
 	case 52:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:380
+//line parseidl.y:380
 		{
 			yyVAL.DataType = &idl.Type{Name: yyDollar[1].Ident}
 		}
 	case 53:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:384
+//line parseidl.y:384
 		{
 			yyVAL.DataType = &idl.Type{Name: yyDollar[1].Ident}
 		}
 	case 54:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:388
+//line parseidl.y:388
 		{
 			yyDollar[3].DataType.Rename = yyDollar[4].As
 			yyVAL.DataType = &idl.Type{Name: "list", ValueType: yyDollar[3].DataType}
 		}
 	case 55:
 		yyDollar = yyS[yypt-8 : yypt+1]
-		//line parseidl.y:393
+//line parseidl.y:393
 		{
 			yyDollar[6].DataType.Rename = yyDollar[7].As
 			yyVAL.DataType = &idl.Type{Name: "map", KeyType: &idl.Type{Name: yyDollar[3].Ident, Rename: yyDollar[4].As}, ValueType: yyDollar[6].DataType}
 		}
 	case 56:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:400
+//line parseidl.y:400
 		{
 			yyVAL.As = ""
 		}
 	case 57:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:404
+//line parseidl.y:404
 		{
 			yyVAL.As = yyDollar[2].String
 		}
 	case 58:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:410
+//line parseidl.y:410
 		{
 			yyVAL.Initializer = nil
 		}
 	case 59:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:414
+//line parseidl.y:414
 		{
 			yyVAL.Initializer = &idl.Pair{Value: yyDollar[2].Int, DataType: "int"}
 		}
 	case 60:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:418
+//line parseidl.y:418
 		{
 			yyVAL.Initializer = &idl.Pair{Value: -yyDollar[3].Int, DataType: "int"}
 		}
 	case 61:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:422
+//line parseidl.y:422
 		{
 			yyVAL.Initializer = &idl.Pair{Value: yyDollar[2].Float, DataType: "float"}
 		}
 	case 62:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:426
+//line parseidl.y:426
 		{
 			yyVAL.Initializer = &idl.Pair{Value: -yyDollar[3].Float, DataType: "float"}
 		}
 	case 63:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:430
+//line parseidl.y:430
 		{
 			yyVAL.Initializer = &idl.Pair{Value: yyDollar[2].String, DataType: "string"}
 		}
 	case 64:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:434
+//line parseidl.y:434
 		{
 			yyVAL.Initializer = &idl.Pair{Value: yyDollar[2].Bool, DataType: "bool"}
 		}
 	case 65:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:438
+//line parseidl.y:438
 		{
 			yyVAL.Initializer = &idl.Pair{Value: yyDollar[2].Char, DataType: "char"}
 		}
 	case 66:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:442
+//line parseidl.y:442
 		{
 			yyVAL.Initializer = &idl.Pair{Value: yyDollar[2].Ident + "." + yyDollar[4].Ident, DataType: "#ref"}
 		}
 	case 67:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:448
+//line parseidl.y:448
 		{
 			yyVAL.Attrs = make([]*idl.Attribute, 0)
 		}
 	case 68:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:452
+//line parseidl.y:452
 		{
 			for i, _ := range yyDollar[2].Attrs {
 				for j := i + 1; j < len(yyDollar[2].Attrs); j++ {
@@ -1214,14 +1215,14 @@ yydefault:
 		}
 	case 69:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:473
+//line parseidl.y:473
 		{
 			// fmt.Printf("]\n")
 			yyVAL.Attrs = yyDollar[2].Attrs
 		}
 	case 70:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:478
+//line parseidl.y:478
 		{
 			// fmt.Printf("]\n")
 			for _, a := range yyDollar[4].Attrs {
@@ -1231,13 +1232,13 @@ yydefault:
 		}
 	case 71:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:488
+//line parseidl.y:488
 		{
 			yyVAL.Attrs = make([]*idl.Attribute, 0)
 		}
 	case 72:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:492
+//line parseidl.y:492
 		{
 			//for _, a := range($1) {
 			//	if strings.ToLower(a.Name) == strings.ToLower($2.Name) && a.Scope == "" && $2.Scope == "" {
@@ -1248,170 +1249,170 @@ yydefault:
 		}
 	case 73:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:504
+//line parseidl.y:504
 		{
 			//fmt.Printf("%s ", $1)
 			yyVAL.Attr = &idl.Attribute{Name: yyDollar[1].Ident, Parameters: make([]*idl.Pair, 0)}
 		}
 	case 74:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:509
+//line parseidl.y:509
 		{
 			//fmt.Printf(") ")
 			yyVAL.Attr = &idl.Attribute{Name: yyDollar[1].Ident, Parameters: yyDollar[3].AttrVals}
 		}
 	case 75:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:517
+//line parseidl.y:517
 		{
 			yyVAL.Ident = yyDollar[1].Ident
 		}
 	case 76:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:521
+//line parseidl.y:521
 		{
 			yyVAL.Ident = yyDollar[1].Ident + "." + yyDollar[3].Ident
 		}
 	case 77:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:527
+//line parseidl.y:527
 		{
 			yyVAL.AttrVals = make([]*idl.Pair, 0)
 		}
 	case 78:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:531
+//line parseidl.y:531
 		{
 			yyVAL.AttrVals = append(yyDollar[1].AttrVals, yyDollar[2].AttrVal)
 		}
 	case 79:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:538
+//line parseidl.y:538
 		{
 			//fmt.Printf("%d ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: yyDollar[1].Int, DataType: "int"}
 		}
 	case 80:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:543
+//line parseidl.y:543
 		{
 			//fmt.Printf("%d ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: -yyDollar[2].Int, DataType: "int"}
 		}
 	case 81:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:548
+//line parseidl.y:548
 		{
 			//fmt.Printf("%f ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: yyDollar[1].Float, DataType: "float"}
 		}
 	case 82:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parseidl.y:553
+//line parseidl.y:553
 		{
 			//fmt.Printf("%f ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: -yyDollar[2].Float, DataType: "float"}
 		}
 	case 83:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:558
+//line parseidl.y:558
 		{
 			//fmt.Printf("\"%s\" ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: yyDollar[1].String, DataType: "string"}
 		}
 	case 84:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:563
+//line parseidl.y:563
 		{
 			//fmt.Printf("\"%d\" ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: yyDollar[1].Bool, DataType: "bool"}
 		}
 	case 85:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:568
+//line parseidl.y:568
 		{
 			//fmt.Printf("\"%d\" ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: yyDollar[1].Char, DataType: "char"}
 		}
 	case 86:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:573
+//line parseidl.y:573
 		{
 			//fmt.Printf("\"%d\" ", $1)
 			yyVAL.AttrVal = &idl.Pair{Value: yyDollar[1].Ident, DataType: "#ref"}
 		}
 	case 87:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:578
+//line parseidl.y:578
 		{
 			//fmt.Printf("%s = %d ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: yyDollar[3].Int, DataType: "int"}
 		}
 	case 88:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:583
+//line parseidl.y:583
 		{
 			//fmt.Printf("%s = %d ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: -yyDollar[4].Int, DataType: "int"}
 		}
 	case 89:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:588
+//line parseidl.y:588
 		{
 			//fmt.Printf("%s = %f ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: yyDollar[3].Float, DataType: "float"}
 		}
 	case 90:
 		yyDollar = yyS[yypt-5 : yypt+1]
-		//line parseidl.y:593
+//line parseidl.y:593
 		{
 			//fmt.Printf("%s = %f ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: -yyDollar[4].Float, DataType: "float"}
 		}
 	case 91:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:598
+//line parseidl.y:598
 		{
 			//fmt.Printf("%s = \"%s\" ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: yyDollar[3].String, DataType: "string"}
 		}
 	case 92:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:603
+//line parseidl.y:603
 		{
 			//fmt.Printf("%s = \"%d\" ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: yyDollar[3].Bool, DataType: "bool"}
 		}
 	case 93:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:608
+//line parseidl.y:608
 		{
 			//fmt.Printf("%s = \"%d\" ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: yyDollar[3].Char, DataType: "char"}
 		}
 	case 94:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parseidl.y:613
+//line parseidl.y:613
 		{
 			//fmt.Printf("%s = \"%d\" ", $1, $3)
 			yyVAL.AttrVal = &idl.Pair{Name: yyDollar[1].Ident, Value: yyDollar[3].Ident, DataType: "#ref"}
 		}
 	case 100:
 		yyDollar = yyS[yypt-0 : yypt+1]
-		//line parseidl.y:623
+//line parseidl.y:623
 		{
 			yyVAL.Comments = make([]string, 0)
 		}
 	case 101:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parseidl.y:627
+//line parseidl.y:627
 		{
 			yyVAL.Comments = append(yyDollar[1].Comments, yyDollar[2].Comment)
 			// fmt.Printf("*** %s\n", $2)
 		}
 	case 102:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parseidl.y:634
+//line parseidl.y:634
 		{
 			//fmt.Printf(" %s\n", $1)
 		}

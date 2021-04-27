@@ -1,9 +1,7 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"github.com/BurntSushi/toml"
 	"io/ioutil"
 	"log"
 	"os"
@@ -11,6 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/BurntSushi/toml"
 )
 
 // duration is used to allow us to use custom TOML marshaling.
@@ -77,7 +77,7 @@ func (c *config) Load(filename string) error {
 	_, err := os.Stat(filename)
 	if err != nil {
 		if !os.IsNotExist(err) {
-			return errors.New(fmt.Sprintf("Unable to stat configuration file %s: %s", filename, err))
+			return fmt.Errorf("unable to stat configuration file %s: %w", filename, err)
 		} else {
 			// no file - okay go on
 			log.Printf("No configuration file at \"%s\"", filename)
@@ -85,10 +85,10 @@ func (c *config) Load(filename string) error {
 	} else {
 		data, err := ioutil.ReadFile(filename)
 		if err != nil {
-			return errors.New(fmt.Sprintf("Unable to read configuration file %s: %s", filename, err))
+			return fmt.Errorf("unable to read configuration file %s: %w", filename, err)
 		}
 		if _, err = toml.Decode(string(data), c); err != nil {
-			return errors.New(fmt.Sprintf("Unable to parse configuration file %s: %s", filename, err))
+			return fmt.Errorf("unable to parse configuration file %s: %w", filename, err)
 		}
 	}
 	return nil

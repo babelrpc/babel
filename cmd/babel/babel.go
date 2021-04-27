@@ -11,12 +11,13 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/babelrpc/babel/generator"
-	"github.com/babelrpc/babel/idl"
-	"github.com/babelrpc/babel/parser"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/babelrpc/babel/generator"
+	"github.com/babelrpc/babel/idl"
+	"github.com/babelrpc/babel/parser"
 )
 
 // main entry point
@@ -95,7 +96,7 @@ Babel accepts quite flexible file patterns - and accepts more than one. Here are
 		os.Exit(1)
 	}
 
-	if *genClient == false && *genServer == false && *genModel == false {
+	if !*genClient && !*genServer && !*genModel {
 		*genClient = true
 		*genServer = true
 		*genModel = true

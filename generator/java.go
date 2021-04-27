@@ -2,11 +2,12 @@ package generator
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 var (
@@ -102,7 +103,6 @@ func (gen *javaGenerator) getParseType(t *idl.Type) string {
 	}
 	if t.Name == "list" {
 		ms = nullJavaTypes[t.Name]
-		s = fmt.Sprintf(ms, gen.formatType(t.ValueType))
 		s = fmt.Sprintf(ms, gen.formatType(t.ValueType))
 	} else if t.Name == "map" {
 		ms = nullJavaTypes[t.Name]
@@ -206,11 +206,11 @@ func (gen *javaGenerator) filterAttributes(attrs []*idl.Attribute) []*idl.Attrib
 // init sets up the generator for use and loads the templates.
 func (gen *javaGenerator) init(args *Arguments) error {
 	if !args.GenClient && !args.GenModel && !args.GenServer {
-		return fmt.Errorf("Nothing to do!")
+		return fmt.Errorf("nothing to do")
 	} else if args.ServerType != "" {
-		return fmt.Errorf("-servertype is not applicable to language java.")
+		return fmt.Errorf("-servertype is not applicable to language java")
 	} else if len(args.Options) > 0 {
-		return fmt.Errorf("-options is not applicable to language java.")
+		return fmt.Errorf("-options is not applicable to language java")
 	}
 	gen.args = args
 	return gen.loadTempates(args.TemplateDir, "java", template.FuncMap{
@@ -312,17 +312,17 @@ func (gen *javaGenerator) GenService(pidl *idl.Idl) ([]string, error) {
 		outFnames = append(outFnames, fname)
 		err := os.MkdirAll(filepath.Join(gen.args.OutputDir, pkgPath), os.ModePerm)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create service output package dir: %s", err)
+			return nil, fmt.Errorf("can't create service output package dir: %w", err)
 		}
 		outFile, err := os.Create(fname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create service output file: %s", err)
+			return nil, fmt.Errorf("can't create service output file: %w", err)
 		}
 
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, "interface.java", s)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing service template: %s", err)
+			return nil, fmt.Errorf("error executing service template: %w", err)
 		}
 	}
 
@@ -341,17 +341,17 @@ func (gen *javaGenerator) GenModel(pidl *idl.Idl) ([]string, error) {
 		outFnames = append(outFnames, fname)
 		err := os.MkdirAll(filepath.Join(gen.args.OutputDir, pkgPath), os.ModePerm)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create model output package dir: %s", err)
+			return nil, fmt.Errorf("can't create model output package dir: %w", err)
 		}
 		outFile, err := os.Create(fname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create model output file: %s", err)
+			return nil, fmt.Errorf("can't create model output file: %w", err)
 		}
 
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, "model.java", s)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing model template: %s", err)
+			return nil, fmt.Errorf("error executing model template: %w", err)
 		}
 	}
 
@@ -370,17 +370,17 @@ func (gen *javaGenerator) GenEnum(pidl *idl.Idl) ([]string, error) {
 		outFnames = append(outFnames, fname)
 		err := os.MkdirAll(filepath.Join(gen.args.OutputDir, pkgPath), os.ModePerm)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create enum output package dir: %s", err)
+			return nil, fmt.Errorf("can't create enum output package dir: %w", err)
 		}
 		outFile, err := os.Create(fname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create enum output file: %s", err)
+			return nil, fmt.Errorf("can't create enum output file: %w", err)
 		}
 
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, "enum.java", e)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing enum template: %s", err)
+			return nil, fmt.Errorf("error executing enum template: %w", err)
 		}
 	}
 
@@ -399,17 +399,17 @@ func (gen *javaGenerator) GenConst(pidl *idl.Idl) ([]string, error) {
 		outFnames = append(outFnames, fname)
 		err := os.MkdirAll(filepath.Join(gen.args.OutputDir, pkgPath), os.ModePerm)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create const output package dir: %s", err)
+			return nil, fmt.Errorf("can't create const output package dir: %w", err)
 		}
 		outFile, err := os.Create(fname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create const output file: %s", err)
+			return nil, fmt.Errorf("can't create const output file: %w", err)
 		}
 
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, "constants.java", c)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing const template: %s", err)
+			return nil, fmt.Errorf("error executing const template: %w", err)
 		}
 	}
 

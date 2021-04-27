@@ -4,6 +4,19 @@ package rest
 
 import "strconv"
 
+func _() {
+	// An "invalid array index" compiler error signifies that the constant values have changed.
+	// Re-run the stringer command to generate them again.
+	var x [1]struct{}
+	_ = x[GET-0]
+	_ = x[PUT-1]
+	_ = x[POST-2]
+	_ = x[DELETE-3]
+	_ = x[OPTIONS-4]
+	_ = x[HEAD-5]
+	_ = x[PATCH-6]
+}
+
 const _HttpMethod_name = "GETPUTPOSTDELETEOPTIONSHEADPATCH"
 
 var _HttpMethod_index = [...]uint8{0, 3, 6, 10, 16, 23, 27, 32}

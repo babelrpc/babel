@@ -9,6 +9,7 @@ package generator
 
 import (
 	"fmt"
+
 	"github.com/babelrpc/babel/idl"
 )
 
@@ -50,7 +51,7 @@ func New(lang string, args *Arguments) (Generator, error) {
 	case "python", "ruby", "javascript", "php", "ios":
 		return nil, fmt.Errorf("%s is not supported...yet", lang)
 	default:
-		return nil, fmt.Errorf("Language %s is not supported", lang)
+		return nil, fmt.Errorf("language %s is not supported", lang)
 	}
 	err := gen.init(args)
 	if err != nil {

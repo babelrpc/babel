@@ -2,11 +2,12 @@ package generator
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 var (
@@ -106,7 +107,7 @@ func (gen *csharpGenerator) fullNameOf(name string) string {
 // formatLiteral formats a literal value for the C# parser.
 func (gen *csharpGenerator) formatLiteral(value interface{}, typeName string) string {
 	if typeName == "#ref" {
-		return fmt.Sprintf("%s", gen.fullNameOf(value.(string)))
+		return gen.fullNameOf(value.(string))
 	} else if typeName == "char" {
 		return fmt.Sprintf("%q", value)
 	} else {
@@ -139,7 +140,7 @@ func (gen *csharpGenerator) isTrivialProperty(t *idl.Type) bool {
 // init sets up the generator for use and loads the templates.
 func (gen *csharpGenerator) init(args *Arguments) error {
 	if !args.GenClient && !args.GenModel && !args.GenServer {
-		return fmt.Errorf("Nothing to do!")
+		return fmt.Errorf("nothing to do")
 	} else if len(args.Options) > 0 {
 		for k, v := range args.Options {
 			switch k {
@@ -152,10 +153,10 @@ func (gen *csharpGenerator) init(args *Arguments) error {
 				if v == "" {
 					return fmt.Errorf("output option cannot be empty.  Valid options are 'ns-flat' and 'ns-nested'")
 				} else if v != "ns-flat" && v != "ns-nested" {
-					return fmt.Errorf("Invalid output option: %s.  Valid options are 'ns-flat' and 'ns-nested'", v)
+					return fmt.Errorf("invalid output option: %s.  Valid options are 'ns-flat' and 'ns-nested'", v)
 				}
 			default:
-				return fmt.Errorf("The %s option is not applicable to language csharp.", k)
+				return fmt.Errorf("the %s option is not applicable to language csharp", k)
 			}
 		}
 	}
@@ -283,16 +284,16 @@ func (gen *csharpGenerator) GenCodeInternal(pidl *idl.Idl, outFname string, temp
 
 		err := os.MkdirAll(filepath.Dir(outFname), os.ModePerm)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create output dir: %s", err)
+			return nil, fmt.Errorf("can't create output dir: %w", err)
 		}
 		outFile, err := os.Create(outFname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create output file: %s", err)
+			return nil, fmt.Errorf("can't create output file: %w", err)
 		}
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, template, pidl)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing template: %s", err)
+			return nil, fmt.Errorf("error executing template: %w", err)
 		}
 		return []string{outFname}, nil
 	} else {

@@ -4,6 +4,18 @@ package rest
 
 import "strconv"
 
+func _() {
+	// An "invalid array index" compiler error signifies that the constant values have changed.
+	// Re-run the stringer command to generate them again.
+	var x [1]struct{}
+	_ = x[NONE-0]
+	_ = x[CSV-1]
+	_ = x[SSV-2]
+	_ = x[TSV-3]
+	_ = x[PIPES-4]
+	_ = x[MULTI-5]
+}
+
 const _ListFmt_name = "NONECSVSSVTSVPIPESMULTI"
 
 var _ListFmt_index = [...]uint8{0, 4, 7, 10, 13, 18, 23}

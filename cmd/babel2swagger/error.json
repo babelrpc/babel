@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "My Application",
-    "description": "../../babeltemplates/error.babel:\n\n\n\n Babel's Error Format\n\n Copyright (C) 2015 The Babel Authors\n\nGenerated on Fri, 24 Aug 2018 21:42:46 EDT via:\n\n\tbabel2swagger \"../../babeltemplates/error.babel\"",
+    "description": "../../babeltemplates/error.babel:\n\n\n\n Babel's Error Format\n\n Copyright (C) 2015 The Babel Authors\n\nGenerated on Tue, 27 Apr 2021 11:23:23 EDT via:\n\n\tbabel2swagger \"../../babeltemplates/error.babel\"",
     "version": "1.0"
   },
   "host": "localhost",

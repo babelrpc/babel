@@ -1,2 +1,3 @@
 package main
-const BABEL_VERSION = "1.2.9"
+
+const BABEL_VERSION = "1.2.10"

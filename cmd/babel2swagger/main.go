@@ -4,22 +4,26 @@
 package main
 
 import (
+	_ "embed"
 	"flag"
 	"fmt"
-	"github.com/babelrpc/babel/idl"
-	"github.com/babelrpc/babel/parser"
-	"github.com/babelrpc/swagger2"
 	"html"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/babelrpc/babel/idl"
+	"github.com/babelrpc/babel/parser"
+	"github.com/babelrpc/swagger2"
 )
 
 // This attached swagger for the error file onto this binary, to use later
 //go:generate babel2swagger -out error.json ../../babeltemplates/error.babel
-//go:generate binder -o errormodel.go error.json
+
+//go:embed error.json
+var errorModelJSON []byte
 
 // Flags that are global
 var (
@@ -140,15 +144,14 @@ func main() {
 	swag.BasePath = basePath
 	swag.Consumes = []string{"application/json"}
 	swag.Produces = []string{"application/json"}
-	swag.Tags = []swagger2.Tag{swagger2.Tag{Name: "babel"}}
+	swag.Tags = []swagger2.Tag{{Name: "babel"}}
 	swag.Info.Title = title
 	swag.Info.Version = version
-	swag.Definitions = make(swagger2.Definitions, 0)
+	swag.Definitions = make(swagger2.Definitions)
 
 	// parse and attach error model (not included with REST unless -genErr is used)
 	if !restful || genErr {
-		errorB := Lookup("/error.json")
-		errorS, err := swagger2.LoadJson(errorB)
+		errorS, err := swagger2.LoadJson(errorModelJSON)
 		if err != nil {
 			panic("Cannot parse embedded error file")
 		}
@@ -220,7 +223,7 @@ func main() {
 	hasEmptyParms := false
 
 	// add service/methods to paths
-	swag.Paths = make(swagger2.Paths, 0)
+	swag.Paths = make(swagger2.Paths)
 	for _, svc := range allServices(&midl) {
 		if restful {
 			err := addRestService(&swag, &midl, svc)
@@ -273,7 +276,7 @@ func main() {
 					*parm.Required = false
 				}
 				p.Post.Parameters = append(p.Post.Parameters, parm)
-				p.Post.Responses = make(swagger2.Responses, 0)
+				p.Post.Responses = make(swagger2.Responses)
 				// SWAGGER-BUG: note that swagger-ui does not show primitive types for responses, even though they are allowed.
 				p.Post.Responses["200"] = swagger2.Response{
 					Description: "Response of type " + html.EscapeString(mth.Returns.String()),

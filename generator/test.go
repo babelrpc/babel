@@ -2,11 +2,12 @@ package generator
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 var (
@@ -60,11 +61,11 @@ func (gen *testGenerator) getTypeKey(t *idl.Type) string {
 // init sets up the generator for use and loads the templates.
 func (gen *testGenerator) init(args *Arguments) error {
 	if !args.GenClient || !args.GenModel || !args.GenServer {
-		return fmt.Errorf("-model, -client, and -server are not applicable to language test.")
+		return fmt.Errorf("-model, -client, and -server are not applicable to language test")
 	} else if args.ServerType != "" {
-		return fmt.Errorf("-servertype is not applicable to language test.")
+		return fmt.Errorf("-servertype is not applicable to language test")
 	} else if len(args.Options) > 0 {
-		return fmt.Errorf("-options is not applicable to language test.")
+		return fmt.Errorf("-options is not applicable to language test")
 	}
 	gen.args = args
 	return gen.loadTempates(args.TemplateDir, "test", template.FuncMap{
@@ -126,13 +127,13 @@ func (gen *testGenerator) GenService(pidl *idl.Idl) ([]string, error) {
 		outFnames = append(outFnames, fname)
 		outFile, err := os.Create(fname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create test output file: %s", err)
+			return nil, fmt.Errorf("can't create test output file: %w", err)
 		}
 
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, "interface.test", s)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing test template: %s", err)
+			return nil, fmt.Errorf("error executing test template: %w", err)
 		}
 	}
 

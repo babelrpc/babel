@@ -3,9 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/ancientlore/flagcfg"
-	"github.com/facebookgo/flagenv"
-	"github.com/kardianos/service"
 	"io"
 	"log"
 	"os"
@@ -14,6 +11,10 @@ import (
 	"runtime/pprof"
 	"strings"
 	"time"
+
+	"github.com/ancientlore/flagcfg"
+	"github.com/facebookgo/flagenv"
+	"github.com/kardianos/service"
 )
 
 var (

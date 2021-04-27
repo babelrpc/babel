@@ -2,12 +2,13 @@ package generator
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 var (
@@ -103,7 +104,7 @@ func (gen *goGenerator) formatLiteral(value interface{}, typeName string) string
 		s, ok := value.(string)
 		if ok {
 			s = strings.Replace(s, ".", "", -1)
-			return fmt.Sprintf("%s", s)
+			return s
 		} else {
 			return fmt.Sprintf("%s", value)
 		}
@@ -121,14 +122,14 @@ func (gen *goGenerator) isVoid(t *idl.Type) bool {
 // init sets up the generator for use and loads the templates.
 func (gen *goGenerator) init(args *Arguments) error {
 	if !args.GenClient && !args.GenModel && !args.GenServer {
-		return fmt.Errorf("Nothing to do!")
+		return fmt.Errorf("nothing to do")
 	} else if args.ServerType != "" {
-		return fmt.Errorf("-servertype does not apply to Go.")
+		return fmt.Errorf("-servertype does not apply to Go")
 	} else if len(args.Options) > 0 {
-		for k, _ := range args.Options {
+		for k := range args.Options {
 			switch k {
 			default:
-				return fmt.Errorf("The %s option is not applicable to language go.", k)
+				return fmt.Errorf("the %s option is not applicable to language go", k)
 			}
 		}
 	}
@@ -282,12 +283,12 @@ func (gen *goGenerator) GenCodeInternal(pidl *idl.Idl, outFname string, template
 	if len(pidl.Consts) > 0 || len(pidl.Enums) > 0 || len(pidl.Structs) > 0 || len(pidl.Services) > 0 {
 		outFile, err := os.Create(outFname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create output file: %s", err)
+			return nil, fmt.Errorf("can't create output file: %w", err)
 		}
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, template, pidl)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing template: %s", err)
+			return nil, fmt.Errorf("error executing template: %w", err)
 		}
 		//err = gen.RunGoFmt(outFname)
 		//if err != nil {

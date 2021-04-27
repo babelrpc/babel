@@ -1657,14 +1657,14 @@ state 202
 
 
 40 terminals, 43 nonterminals
-103 grammar rules, 203/8000 states
+103 grammar rules, 203/16000 states
 0 shift/reduce, 0 reduce/reduce conflicts reported
 92 working sets used
-memory: parser 127/120000
+memory: parser 127/240000
 45 extra closures
 191 shift entries, 2 exceptions
 92 goto entries
 11 entries saved by goto default
-Optimizer space used: output 226/120000
+Optimizer space used: output 226/240000
 226 table entries, 0 zero
 maximum spread: 40, maximum offset: 201

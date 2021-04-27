@@ -2,11 +2,12 @@ package generator
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 // aspGenerator is the code generator for ASP.
@@ -37,7 +38,7 @@ func (gen *aspGenerator) internalType(t *idl.Type) string {
 	} else if t.IsEnum(gen.tplRootIdl) {
 		s = "enum"
 	} else if !t.IsUserDefined() {
-		s = fmt.Sprintf("%s", t.Name)
+		s = t.Name
 	} else {
 		s = fmt.Sprintf("%s%s", gen.tplRootIdl.NamespaceOf(t.Name, "asp"), t.Name)
 	}
@@ -122,9 +123,9 @@ func (gen *aspGenerator) isVoid(t *idl.Type) bool {
 func (gen *aspGenerator) init(args *Arguments) error {
 	gen.extension = "asp"
 	if !args.GenClient && !args.GenModel {
-		return fmt.Errorf("Nothing to do!")
+		return fmt.Errorf("nothing to do")
 	} else if args.ServerType != "" {
-		return fmt.Errorf("-servertype is not applicable to language asp.")
+		return fmt.Errorf("-servertype is not applicable to language asp")
 	} else if len(args.Options) > 0 {
 		for k, v := range args.Options {
 			switch k {
@@ -137,7 +138,7 @@ func (gen *aspGenerator) init(args *Arguments) error {
 				}
 				gen.extension = v
 			default:
-				return fmt.Errorf("The %s option is not applicable to language asp.", k)
+				return fmt.Errorf("the %s option is not applicable to language asp", k)
 			}
 		}
 	}
@@ -204,12 +205,12 @@ func (gen *aspGenerator) GenCodeInternal(pidl *idl.Idl, outFname string, templat
 	if len(pidl.Consts) > 0 || len(pidl.Enums) > 0 || len(pidl.Structs) > 0 || len(pidl.Services) > 0 {
 		outFile, err := os.Create(outFname)
 		if err != nil {
-			return nil, fmt.Errorf("Can't create output file: %s", err)
+			return nil, fmt.Errorf("can't create output file: %w", err)
 		}
 		defer outFile.Close()
 		err = gen.templates.ExecuteTemplate(outFile, template, pidl)
 		if err != nil {
-			return nil, fmt.Errorf("Error executing template: %s", err)
+			return nil, fmt.Errorf("error executing template: %w", err)
 		}
 		return []string{outFname}, nil
 	} else {

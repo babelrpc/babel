@@ -4,6 +4,17 @@ package rest
 
 import "strconv"
 
+func _() {
+	// An "invalid array index" compiler error signifies that the constant values have changed.
+	// Re-run the stringer command to generate them again.
+	var x [1]struct{}
+	_ = x[QUERY-0]
+	_ = x[HEADER-1]
+	_ = x[PATH-2]
+	_ = x[FORMDATA-3]
+	_ = x[BODY-4]
+}
+
 const _ParmIn_name = "QUERYHEADERPATHFORMDATABODY"
 
 var _ParmIn_index = [...]uint8{0, 5, 11, 15, 23, 27}

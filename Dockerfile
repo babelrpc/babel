@@ -6,36 +6,11 @@ ADD . /go/src/github.com/babelrpc/babel
 # tools needed
 RUN go get golang.org/x/tools/cmd/goyacc
 RUN go get golang.org/x/tools/cmd/stringer
-RUN go get github.com/ancientlore/binder
-
-# libs needed
-
-RUN go get gopkg.in/yaml.v2
-RUN go get github.com/BurntSushi/toml
-RUN go get github.com/kardianos/service
-RUN go get github.com/ancientlore/kubismus
-RUN go get github.com/julienschmidt/httprouter
-RUN go get golang.org/x/net/context
-RUN go get github.com/golang/snappy
-RUN go get github.com/facebookgo/flagenv
-RUN go get github.com/ancientlore/flagcfg
-
-RUN go get github.com/babelrpc/swagger2
 
 # Build
 
-RUN go generate github.com/babelrpc/babel/babeltemplates
-RUN go install github.com/babelrpc/babel/babeltemplates
-
-RUN go install github.com/babelrpc/babel/idl
-
 RUN go generate github.com/babelrpc/babel/parser
-RUN go install github.com/babelrpc/babel/parser
-
-RUN go install github.com/babelrpc/babel/generator
-
 RUN go generate github.com/babelrpc/babel/rest
-RUN go install github.com/babelrpc/babel/rest
 
 RUN go install github.com/babelrpc/babel/cmd/babel
 

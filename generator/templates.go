@@ -2,7 +2,6 @@ package generator
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -11,6 +10,8 @@ import (
 	"text/template"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 // LocateTemplateDir determines the default template folder based on the
@@ -122,10 +123,8 @@ func (gen *templateManager) getFuncMap(xtra template.FuncMap) template.FuncMap {
 			return gen.expandComments(s)
 		},
 	}
-	if xtra != nil {
-		for k, v := range xtra {
-			m[k] = v
-		}
+	for k, v := range xtra {
+		m[k] = v
 	}
 	return m
 }
@@ -139,6 +138,9 @@ func (gen *templateManager) loadTempates(templatesDir, lang string, xtraFuncs te
 	}
 	defer fil.Close()
 	info, err := fil.Readdir(256) // assume no more than 256 templates
+	if err != nil {
+		return err
+	}
 	tplFiles := make([]string, 0)
 
 	for _, i := range info {

@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/babelrpc/babel/idl"
 	"os"
 	"strings"
+
+	"github.com/babelrpc/babel/idl"
 )
 
 func main() {
@@ -235,7 +236,7 @@ service LllService {`)
 	// Fun test cases
 	// --------------------
 
-	fmt.Println(`
+	fmt.Print(`
 /// A fun structure
 struct FunStruct {
 	/// X defaults to 2
@@ -265,6 +266,7 @@ service FunService {
 		/// A map of strings to list of FunStruct
 		map<string,list<FunStruct>> parameter);
 }
+
 `)
 
 	structs++

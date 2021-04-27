@@ -5,11 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/ancientlore/kubismus"
-	"github.com/babelrpc/babel/idl"
-	"github.com/babelrpc/babel/parser"
-	"github.com/babelrpc/babel/rest"
-	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
 	"path"
@@ -17,6 +12,12 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/ancientlore/kubismus"
+	"github.com/babelrpc/babel/idl"
+	"github.com/babelrpc/babel/parser"
+	"github.com/babelrpc/babel/rest"
+	"github.com/julienschmidt/httprouter"
 )
 
 func loadBabelFiles(args []string) (*idl.Idl, error) {
@@ -32,7 +33,7 @@ func loadBabelFiles(args []string) (*idl.Idl, error) {
 	for _, infilePat := range args {
 		infiles, err := filepath.Glob(infilePat)
 		if err != nil {
-			return nil, errors.New(fmt.Sprintf("Cannot glob files: %s\n", err))
+			return nil, fmt.Errorf("cannot glob files: %w", err)
 		}
 		if len(infiles) == 0 {
 			log.Printf("Warning: No files match \"%s\"\n", infilePat)
@@ -46,7 +47,7 @@ func loadBabelFiles(args []string) (*idl.Idl, error) {
 				// fmt.Printf("%s:\n", infile)
 				bidl, err := parser.ParseIdl(infile, "test")
 				if err != nil {
-					return nil, errors.New(fmt.Sprintf("Parsing error in %s: %s\n", infile, err))
+					return nil, fmt.Errorf("parsing error in %s: %w", infile, err)
 				}
 
 				midl.Imports = append(midl.Imports, bidl)
@@ -80,7 +81,7 @@ func addHandlers(router *httprouter.Router, midl *idl.Idl) error {
 			count++
 			op, err := rest.ReadOp(mth)
 			if err != nil {
-				log.Fatal("Cannot process %s.%s: %s", svc.Name, mth.Name, err)
+				log.Fatalf("Cannot process %s.%s: %s", svc.Name, mth.Name, err)
 			}
 			if !op.Hide {
 				routePath := re.ReplaceAllString(path.Join(conf.RestPath, op.Path), ":$1")
@@ -217,7 +218,7 @@ func makeHandler(midl *idl.Idl, svc *idl.Service, mth *idl.Method) (httprouter.H
 }
 
 func one(val []string) string {
-	if val == nil || len(val) == 0 {
+	if len(val) == 0 {
 		return ""
 	} else {
 		return val[0]
@@ -252,7 +253,7 @@ func toType(val []string, midl *idl.Idl, typ *idl.Type, fmt rest.ListFmt) (inter
 			sep = "|"
 		case rest.MULTI:
 		default:
-			return nil, errors.New("Format must be specified when lists are encoded.")
+			return nil, errors.New("format must be specified when lists are encoded")
 		}
 		vals := make([]interface{}, 0)
 		var arr []string

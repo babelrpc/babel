@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/ancientlore/kubismus"
-	"github.com/julienschmidt/httprouter"
-	"github.com/kardianos/service"
-	"golang.org/x/net/context"
 	"log"
 	"net/http"
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/ancientlore/kubismus"
+	"github.com/julienschmidt/httprouter"
+	"github.com/kardianos/service"
+	"golang.org/x/net/context"
 )
 
 // Service implementation for log tail
@@ -71,7 +72,7 @@ func (i *svcImpl) doWork() {
 
 	mux := http.NewServeMux()
 	mux.Handle(addSlash(conf.StatusPath), switchPrefix(addSlash(conf.StatusPath), "/", http.HandlerFunc(kubismus.ServeHTTP)))
-	mux.Handle(addSlash(conf.MediaPath), switchPrefix(addSlash(conf.MediaPath), "/media/", http.HandlerFunc(ServeHTTP)))
+	mux.Handle(addSlash(conf.MediaPath), switchPrefix(addSlash(conf.MediaPath), "/media/", http.FileServer(http.FS(webContent))))
 
 	// initialize HTTP settings for posting
 	i.cancel = initHttp()
@@ -80,11 +81,8 @@ func (i *svcImpl) doWork() {
 	go func() {
 		t := time.NewTicker(5 * time.Second)
 		defer t.Stop()
-		for {
-			select {
-			case <-t.C:
-				kubismus.Note("Goroutines", fmt.Sprintf("%d", runtime.NumGoroutine()))
-			}
+		for _ = range t.C {
+			kubismus.Note("Goroutines", fmt.Sprintf("%d", runtime.NumGoroutine()))
 		}
 	}()
 
@@ -99,7 +97,7 @@ func (i *svcImpl) doWork() {
 
 	// handle swagger UI and JSON generator
 	router := httprouter.New()
-	router.Handler("GET", addSlash(conf.SwaggerPath)+"*path", switchPrefix(addSlash(conf.SwaggerPath), "/swagger/", http.HandlerFunc(ServeHTTP)))
+	router.Handler("GET", addSlash(conf.SwaggerPath)+"*path", switchPrefix(addSlash(conf.SwaggerPath), "/swagger/", http.FileServer(http.FS(webContent))))
 	err = handleSwagger(router)
 	if err != nil {
 		log.Fatal(err)

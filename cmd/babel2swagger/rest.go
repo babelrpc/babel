@@ -2,12 +2,13 @@ package main
 
 import (
 	"errors"
-	"github.com/babelrpc/babel/idl"
-	"github.com/babelrpc/babel/rest"
-	"github.com/babelrpc/swagger2"
 	"html"
 	"strconv"
 	"strings"
+
+	"github.com/babelrpc/babel/idl"
+	"github.com/babelrpc/babel/rest"
+	"github.com/babelrpc/swagger2"
 )
 
 // RestOperation associates the annotations with the IDL method
@@ -109,7 +110,7 @@ func addRestService(swag *swagger2.Swagger, midl *idl.Idl, svc *idl.Service) err
 				if parm.Format != rest.NONE {
 					p.Format = strings.ToLower(parm.Format.String())
 				}
-				if parm.Required == true {
+				if parm.Required {
 					p.Required = new(bool)
 					*p.Required = parm.Required
 				}
@@ -117,7 +118,7 @@ func addRestService(swag *swagger2.Swagger, midl *idl.Idl, svc *idl.Service) err
 			}
 
 			// Add responses
-			op.Responses = make(swagger2.Responses, 0)
+			op.Responses = make(swagger2.Responses)
 			for statuscode, resp := range restop.Annotation.Responses {
 				strcode := strconv.Itoa(statuscode)
 				if statuscode <= 0 {
