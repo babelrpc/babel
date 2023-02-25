@@ -12,7 +12,7 @@ require (
 	github.com/facebookgo/subset v0.0.0-20200203212716-c811ad88dec4 // indirect
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/kardianos/service v1.2.2
-	golang.org/x/net v0.0.0-20221014081412-f15817d10f9b
+	golang.org/x/net v0.7.0
 )
 
 go 1.16
